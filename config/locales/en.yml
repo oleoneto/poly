@@ -1,0 +1,16 @@
+en:
+  controllers:
+    added_to_trash: "resource added to trash"
+    archived: "resource added to archive"
+    created: "resource created"
+    updated: "resource updated"
+    destroyed: "resource permanently destroyed"
+    errors:
+      authentication_required: "authentication required"
+      not_found: "resource not found"
+      server_error: "An error occurred"
+      payment_required: "payment required"
+      method_not_allowed: "method not allowed through API"
+      not_authorized: "permission denied"
+      unable_to_follow: "unable to follow user"
+      not_subscribed: "not subscribed"

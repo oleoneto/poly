@@ -1,0 +1,16 @@
+pt:
+  controllers:
+    added_to_trash: "recurso jogado no lixo"
+    archived: "recuso arquivado"
+    created: "recurso criado"
+    updated: "recurso utualizado"
+    destroyed: "recurso destruído"
+    errors:
+      authentication_required: "necessita autenticar"
+      not_found: "recurso não encontrado"
+      server_error: "O servidor encontrou um erro"
+      payment_required: "pagamento necessário"
+      method_not_allowed: "operação não permitida via API"
+      not_authorized: "sem permissão"
+      unable_to_follow: "erro em seguir usuário"
+      not_subscribed: "sem subscrição"
