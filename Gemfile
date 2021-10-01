@@ -6,6 +6,7 @@ gemspec
 
 group :development do
   gem 'sqlite3'
+  gem 'pg', '~> 1.1'
 end
 
 gem 'faker', group: [:development, :test]
