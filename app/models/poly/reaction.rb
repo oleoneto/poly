@@ -9,7 +9,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  reactable_id      :integer          not null
-#  user_id           :bigint           not null
+#  user_id           :uuid             not null
 #
 # Indexes
 #
@@ -33,5 +33,13 @@ module Poly
     include Poly::Concerns::Visibility
 
     belongs_to :reactable, polymorphic: true
+
+    enum type: [:bookmark, :emoji, :favorite, :like, :save], _prefix: :reaction
+
+    validate :emoji_type_has_data!
+
+    def emoji_type_has_data!
+      errors.add "emoji missing" if reaction_emoji? && data.nil?
+    end
   end
 end

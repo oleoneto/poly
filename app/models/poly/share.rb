@@ -9,7 +9,7 @@
 #  updated_at     :datetime         not null
 #  invitee_id     :bigint           not null
 #  shareable_id   :integer          not null
-#  user_id        :bigint           not null
+#  user_id        :uuid             not null
 #
 # Indexes
 #

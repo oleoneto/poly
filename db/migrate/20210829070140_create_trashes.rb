@@ -1,10 +1,9 @@
 class CreateTrashes < ActiveRecord::Migration[6.1]
   def change
-    create_table :trashes do |t|
-      t.uuid :id, primary_key: true
-      t.belongs_to :user, null: false, foreign_key: { on_delete: :cascade }
-      t.integer :trashable_id, null: false, index: true
+    create_table :trashes, id: :uuid do |t|
+      t.belongs_to :user, null: false, type: :uuid, foreign_key: { on_delete: :cascade }
       t.string :trashable_type, null: false, index: true
+      t.uuid :trashable_id, null: false, index: true
       t.timestamps
     end
 

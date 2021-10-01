@@ -1,10 +1,9 @@
 class CreateArchives < ActiveRecord::Migration[6.1]
   def change
-    create_table :archives do |t|
-      t.uuid :id, primary_key: true
-      t.belongs_to :user, null: false, foreign_key: { on_delete: :cascade }
-      t.integer :archivable_id, null: false, index: true
+    create_table :archives, id: :uuid do |t|
+      t.belongs_to :user, null: false, type: :uuid, foreign_key: { on_delete: :cascade }
       t.string :archivable_type, null: false, index: true
+      t.uuid :archivable_id, null: false, index: true
       t.timestamps
     end
 

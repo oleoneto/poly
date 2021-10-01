@@ -1,11 +1,11 @@
 class CreateReactions < ActiveRecord::Migration[6.1]
   def change
-    create_table :reactions do |t|
-      t.uuid :id, primary_key: true
-      t.belongs_to :user, null: false, foreign_key: { on_delete: :cascade }, index: true
-      t.enum :type, enum_name: :reaction_type, null: false, index: true
+    create_table :reactions, id: :uuid do |t|
+      t.belongs_to :user, null: false, type: :uuid, foreign_key: { on_delete: :cascade }, index: true
+      t.string :type, null: false, index: true
       t.string :reactable_type, null: false, index: true
-      t.integer :reactable_id, null: false, index: true
+      t.uuid :reactable_id, null: false, index: true
+      t.json :data, null: false, default: {}
       t.boolean :is_private, null: false, default: true, index: true
       t.datetime :discarded_at, null: true, index: true
 

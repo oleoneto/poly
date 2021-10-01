@@ -9,7 +9,7 @@
 #  title        :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  user_id      :bigint           not null
+#  user_id      :uuid             not null
 #
 # Indexes
 #
