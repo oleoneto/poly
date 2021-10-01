@@ -11,6 +11,10 @@ module Dummy
   class Application < Rails::Application
     config.load_defaults Rails::VERSION::STRING.to_f
 
+    config.generators do |generator|
+      generator.orm :active_record, primary_key_type: :uuid
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
