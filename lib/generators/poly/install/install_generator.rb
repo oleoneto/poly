@@ -1,0 +1,9 @@
+module Poly
+  module Generators
+    class InstallGenerator < ::Rails::Generators::Base
+      def copy_poly_migrations
+        rails_command "railties:install:migrations FROM=poly", inline: true
+      end
+    end
+  end
+end

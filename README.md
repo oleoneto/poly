@@ -21,6 +21,11 @@ Or install it yourself as:
 $ gem install poly
 ```
 
+### Install in your application
+```bash
+$ rails g poly:install
+```
+
 ## Contributing
 Contribution directions go here.
 
