@@ -1,0 +1,28 @@
+@layer base {
+  trix-editor {
+    @apply overflow-x-auto w-full overflow-y-scroll;
+    max-height: 500px;
+
+    code {
+      @apply dark:bg-gray-700 bg-gray-200;
+      @apply py-0.5 px-1 rounded-sm;
+    }
+
+    pre {
+      @apply border-2 border-secondary bg-tertiary;
+      @apply p-4 my-2 rounded;
+      // @apply overflow-x-auto;
+    }
+  }
+
+  trix-toolbar {
+    .trix-button--icon {
+      @apply text-primary;
+      @apply bg-gray-100;
+    }
+
+    .trix-button {
+      background-color: #F98989 !important;
+    }
+  }
+}

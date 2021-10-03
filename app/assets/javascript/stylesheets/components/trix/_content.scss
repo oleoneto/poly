@@ -1,0 +1,7 @@
+@layer base {
+  figure {
+    &.attachment.attachment--file {
+      @apply py-2 w-full border-none;
+    }
+  }
+}
