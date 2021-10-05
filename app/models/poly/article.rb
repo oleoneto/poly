@@ -6,6 +6,8 @@
 #  discarded_at :datetime
 #  is_private   :boolean          default(TRUE), not null
 #  language     :string
+#  excerpt      :string           not null
+#  status       :string           not null
 #  title        :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
@@ -26,16 +28,23 @@
 #
 module Poly
   class Article < ApplicationRecord
-    include Poly::Concerns::Commentable
-    include Poly::Concerns::Reactable
-    include Poly::Concerns::Sortable
-    include Poly::Concerns::Trashable
-    include Poly::Concerns::UserOwned
-    include Poly::Concerns::Visibility
+    include Concerns::Commentable
+    include Concerns::Reactable
+    include Concerns::Sortable
+    include Concerns::Trashable
+    include Concerns::UserOwned
+    include Concerns::Visibility
 
     has_rich_text :content
 
+    enum status: {unlisted: 0, published: 1}
+
+    scope :published, -> { where(status: :published) }
+    scope :unlisted, -> { where(status: :unlisted) }
+
     validates :title, length: { minimum: 3, maximum: 50}
     validates :content, presence: true
+    validates :status, inclusion: { in: statuses.keys }
+    validates :excerpt, length: { minimum: 3, maximum: 144 }
   end
 end
