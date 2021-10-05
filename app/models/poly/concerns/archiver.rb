@@ -8,7 +8,7 @@ module Poly
       extend ActiveSupport::Concern
 
       included do
-        has_many :archives, dependent: :destroy
+        has_many :archives, dependent: :destroy, class_name: "Poly::Archive"
         scope :with_archives, -> { include(:archives) }
       end
     end

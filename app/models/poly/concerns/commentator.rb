@@ -8,7 +8,7 @@ module Poly
       extend ActiveSupport::Concern
 
       included do
-        has_many :comments, dependent: :destroy
+        has_many :comments, dependent: :destroy, class_name: "Poly::Comment"
 
         scope :with_comments, -> { includes(:comments) }
       end

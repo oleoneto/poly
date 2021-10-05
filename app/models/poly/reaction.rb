@@ -9,7 +9,7 @@
 #  updated_at        :datetime         not null
 #  reactable_type    :string           not null
 #  reactable_id      :integer          not null
-#  reaction_type      :integer          not null
+#  kind              :string           not null
 #  user_id           :uuid             not null
 #
 # Indexes
@@ -20,6 +20,7 @@
 #  index_reactions_on_is_private        (is_private)
 #  index_reactions_on_public_uid        (public_uid)
 #  index_reactions_on_user_id           (user_id)
+#  index_reactions_on_kind              (kind)
 #  index_unique_reactions               (user_id,type,reactable_type,reactable_id) UNIQUE
 #
 # Foreign Keys
@@ -35,7 +36,13 @@ module Poly
 
     belongs_to :reactable, polymorphic: true
 
-    enum type: [:bookmark, :emoji, :favorite, :like, :save], _prefix: :reaction
+    enum kind: {
+      bookmark: 10,
+      save: 11,
+      favorite: 12,
+      like: 13,
+      emoji: 20,
+    }, _prefix: :reaction
 
     validate :emoji_type_has_data!
 

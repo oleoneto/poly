@@ -6,7 +6,7 @@ module Poly
       extend ActiveSupport::Concern
 
       included do
-        has_many :archives, as: :archivable, dependent: :destroy
+        has_many :archives, as: :archivable, dependent: :destroy, class_name: "Poly::Archive"
       end
     end
   end

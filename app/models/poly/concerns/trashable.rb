@@ -7,7 +7,7 @@ module Poly
       prepend Discard::Model
 
       included do
-        has_many :trashes, as: :trashable, dependent: :destroy
+        has_many :trashes, as: :trashable, dependent: :destroy, class_name: "Poly::Trash"
 
         after_create :check_if_discarded
         after_discard :trash!

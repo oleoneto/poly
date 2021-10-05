@@ -8,7 +8,7 @@ module Poly
       extend ActiveSupport::Concern
 
       included do
-        has_many :shares, dependent: :destroy
+        has_many :shares, dependent: :destroy, class_name: "Poly::Share"
         scope :with_shares, -> { include(:shares) }
       end
     end

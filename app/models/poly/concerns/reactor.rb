@@ -8,7 +8,7 @@ module Poly
       extend ActiveSupport::Concern
 
       included do
-        has_many :reactions, dependent: :destroy
+        has_many :reactions, dependent: :destroy, class_name: "Poly::Reaction"
         scope :with_reactions, -> { include(:reactions) }
       end
     end

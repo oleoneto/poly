@@ -6,7 +6,7 @@ module Poly
       extend ActiveSupport::Concern
 
       included do
-        has_many :shares, as: :shareable, dependent: :destroy
+        has_many :shares, as: :shareable, dependent: :destroy, class_name: "Poly::Share"
       end
     end
   end
