@@ -6,4 +6,8 @@ module Poly
       generators.test_framework :rspec
     end
   end
+
+  # Do not prefix table names with `poly_`
+  def self.table_name_prefix
+  end
 end

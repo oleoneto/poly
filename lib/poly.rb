@@ -1,5 +1,7 @@
 require "poly/version"
 require "poly/engine"
+require "discard"
+require "pagy"
 
 module Poly
   mattr_accessor :trash_ttl
@@ -12,6 +14,8 @@ module Poly
 
   class Engine < Rails::Engine
   end
+
+  autoload :UserLocale, "poly/user_locale"
 
   def self.setup
     yield self
