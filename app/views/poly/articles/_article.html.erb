@@ -1,0 +1,12 @@
+<div class="bg-yellow-500 p-5 rounded-lg text-white shadow-md">
+  <div class="flex justify-between text-xs pb-3" style="font-size: 0.59rem">
+    <p class="uppercase text-gray-100 font-semibold"><%= relative_time_in_words(article.created_at) %></p>
+    <p class="uppercase bg-yellow-600 text-gray-200 rounded-sm px-1 font-bold">Learning</p>
+  </div>
+  <%= link_to article, class: "mt-2 block" do %>
+    <h3 class="pb-4 font-bold text-2xl hover:text-gray-100 md:truncate">
+      <%= article.title %>
+    </h3>
+  <% end %>
+  <p class="text-sm text-gray-100"><%= article.excerpt %></p>
+</div>
