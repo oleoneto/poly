@@ -1,1 +1,29 @@
-<h1>Article#Show</h1>
+<section class="relative py-16 overflow-hidden">
+  <div class="relative px-4 sm:px-6 lg:px-8">
+    <div class="text-lg max-w-prose mx-auto">
+      <h1>
+        <span
+          class="block text-center text-xs text-blue-600 font-semibold tracking-wide uppercase">
+          Written by <%= link_to @article.author.name, @article.author, class: "text-indigo-600 underline" %>
+          on <%= @article.created_at.to_formatted_s(:long) %>
+          (<%= relative_time_in_words(@article.created_at) %>)
+        </span>
+        <span
+          class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight sm:text-5xl">
+          <%= @article.title %>
+        </span>
+      </h1>
+    </div>
+    <div class="mt-6 prose prose-indigo prose-lg text-primary mx-auto" data-controller="clipboard color">
+      <%= @article.content %>
+    </div>
+
+    <div class="pt-16">
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative py-16 px-8 bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden lg:px-16 border-tertiary">
+          <%#= render 'comments/comments' , commentable: @article %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

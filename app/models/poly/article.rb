@@ -32,15 +32,17 @@ module Poly
     include Concerns::Reactable
     include Concerns::Sortable
     include Concerns::Trashable
-    include Concerns::UserOwned
     include Concerns::Visibility
 
     has_rich_text :content
+
+    belongs_to :author, class_name: "User", foreign_key: "user_id"
 
     enum status: {unlisted: 0, published: 1}
 
     scope :published, -> { where(status: :published) }
     scope :unlisted, -> { where(status: :unlisted) }
+    scope :with_author, -> { includes(:author) }
 
     validates :title, length: { minimum: 3, maximum: 50}
     validates :content, presence: true

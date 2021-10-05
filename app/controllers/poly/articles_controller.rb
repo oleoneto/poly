@@ -4,7 +4,7 @@ module Poly
     include Pagy::Backend
 
     def index
-      @paginator, @articles = pagy(Article.published.latest, items: 6)
+      @paginator, @articles = pagy(Article.published.latest, items: 8)
       respond_to do |format|
         format.html
         format.rss { render :layout => false }
@@ -12,6 +12,9 @@ module Poly
     end
 
     def show
+    end
+
+    def edit
     end
 
     private
