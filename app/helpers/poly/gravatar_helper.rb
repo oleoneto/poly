@@ -8,6 +8,16 @@ module Poly
       @gravatar_image_url = "https://www.gravatar.com/avatar/#{email_md5}#{query_params}"
     end
 
+    def user_avatar(user)
+      unless defined?(user.photo)
+        return user_gravatar(user.email, size: 40)
+      end
+
+      user.photo.attached? ? user.photo : user_gravatar(user.email, size: 40)
+    end
+
+    private
+
     # Based on Gravatar_image_tag gem: mdeering/gravatar_image_tag
     def url_params(gravatar_params)
       return nil if gravatar_params.keys.size == 0
