@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_051840) do
+ActiveRecord::Schema.define(version: 2021_10_05_175725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -25,27 +25,27 @@ ActiveRecord::Schema.define(version: 2021_10_05_051840) do
     t.index ["message_id", "message_checksum"], name: "index_action_mailbox_inbound_emails_uniqueness", unique: true
   end
 
-  create_table "action_text_rich_texts", force: :cascade do |t|
+  create_table "action_text_rich_texts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
+    t.uuid "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table "active_storage_attachments", force: :cascade do |t|
+  create_table "active_storage_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.uuid "record_id", null: false
+    t.uuid "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
+  create_table "active_storage_blobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 2021_10_05_051840) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+  create_table "active_storage_variant_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -69,8 +69,7 @@ ActiveRecord::Schema.define(version: 2021_10_05_051840) do
     t.uuid "archivable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["archivable_id"], name: "index_archives_on_archivable_id"
-    t.index ["archivable_type"], name: "index_archives_on_archivable_type"
+    t.index ["archivable_type", "archivable_id"], name: "index_archives_on_archivable"
     t.index ["user_id", "archivable_id", "archivable_type"], name: "index_unique_archive_item"
     t.index ["user_id"], name: "index_archives_on_user_id"
   end
@@ -101,8 +100,7 @@ ActiveRecord::Schema.define(version: 2021_10_05_051840) do
     t.datetime "discarded_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["commentable_id"], name: "index_comments_on_commentable_id"
-    t.index ["commentable_type"], name: "index_comments_on_commentable_type"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["discarded_at"], name: "index_comments_on_discarded_at"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -121,7 +119,7 @@ ActiveRecord::Schema.define(version: 2021_10_05_051840) do
 
   create_table "reactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
-    t.string "type", limit: 20, null: false
+    t.string "kind", limit: 20, null: false
     t.string "reactable_type", null: false
     t.uuid "reactable_id", null: false
     t.json "data", default: {}, null: false
@@ -131,10 +129,9 @@ ActiveRecord::Schema.define(version: 2021_10_05_051840) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["discarded_at"], name: "index_reactions_on_discarded_at"
     t.index ["is_private"], name: "index_reactions_on_is_private"
-    t.index ["reactable_id"], name: "index_reactions_on_reactable_id"
-    t.index ["reactable_type"], name: "index_reactions_on_reactable_type"
-    t.index ["type"], name: "index_reactions_on_type"
-    t.index ["user_id", "type", "reactable_type", "reactable_id"], name: "index_unique_user_reactions", unique: true
+    t.index ["kind"], name: "index_reactions_on_kind"
+    t.index ["reactable_type", "reactable_id"], name: "index_reactions_on_reactable"
+    t.index ["user_id", "kind", "reactable_type", "reactable_id"], name: "index_unique_user_reactions", unique: true
     t.index ["user_id"], name: "index_reactions_on_user_id"
   end
 
@@ -149,8 +146,7 @@ ActiveRecord::Schema.define(version: 2021_10_05_051840) do
     t.index ["discarded_at"], name: "index_shares_on_discarded_at"
     t.index ["invitee_id", "shareable_type", "shareable_id"], name: "index_unique_shares", unique: true
     t.index ["invitee_id"], name: "index_shares_on_invitee_id"
-    t.index ["shareable_id"], name: "index_shares_on_shareable_id"
-    t.index ["shareable_type"], name: "index_shares_on_shareable_type"
+    t.index ["shareable_type", "shareable_id"], name: "index_shares_on_shareable"
     t.index ["user_id"], name: "index_shares_on_user_id"
   end
 
@@ -160,8 +156,7 @@ ActiveRecord::Schema.define(version: 2021_10_05_051840) do
     t.uuid "trashable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["trashable_id"], name: "index_trashes_on_trashable_id"
-    t.index ["trashable_type"], name: "index_trashes_on_trashable_type"
+    t.index ["trashable_type", "trashable_id"], name: "index_trashes_on_trashable"
     t.index ["user_id", "trashable_id", "trashable_type"], name: "index_unique_trash_item"
     t.index ["user_id"], name: "index_trashes_on_user_id"
   end

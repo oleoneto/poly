@@ -1,3 +1,4 @@
+# This migration comes from poly (originally 20210705044017)
 # This migration comes from action_mailbox (originally 20180917164000)
 class CreateActionMailboxTables < ActiveRecord::Migration[6.0]
   def change

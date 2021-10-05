@@ -14,7 +14,7 @@ end
 # ==============================
 # Articles
 # ==============================
-5.times do
+10.times do
   puts "Adding article"
 
   Poly::Article.create!(
@@ -32,14 +32,14 @@ end
 # Reactions: Bookmarks, Comments, and Likes
 # ==============================
 Poly::Article.all.each do |article|
-  User.first.reactions.create(reactable: article, type: :bookmark)
-  User.second.reactions.create(reactable: article, type: :bookmark)
-  User.last.reactions.create(reactable: article, type: :bookmark)
+  User.first.reactions.create(reactable: article, kind: :bookmark)
+  User.second.reactions.create(reactable: article, kind: :bookmark)
+  User.last.reactions.create(reactable: article, kind: :bookmark)
 
   User.first.comments.create(commentable: article, content: Faker::Lorem.sentence(word_count: 5))
   User.last.comments.create(commentable: article, content: Faker::Lorem.sentence(word_count: 5))
 
-  User.first.reactions.create(reactable: article, type: :like)
-  User.second.reactions.create(reactable: article, type: :like)
-  User.last.reactions.create(reactable: article, type: :like)
+  User.first.reactions.create(reactable: article, kind: :like)
+  User.second.reactions.create(reactable: article, kind: :like)
+  User.last.reactions.create(reactable: article, kind: :like)
 end
