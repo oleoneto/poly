@@ -12,4 +12,5 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require poly
 //= require_tree .
