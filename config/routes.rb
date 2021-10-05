@@ -9,6 +9,7 @@ Poly::Engine.routes.draw do
     resources :reactions
   end
   resources :trash
+  resources :users
 
   # API
   namespace :v1, defaults: { format: :json } do
