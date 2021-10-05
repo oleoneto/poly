@@ -3,6 +3,7 @@ PATH
   specs:
     poly (0.1.0)
       discard (~> 1.2)
+      pagy (~> 3.5)
       rails (~> 6.1.4, >= 6.1.4.1)
 
 GEM
@@ -98,6 +99,7 @@ GEM
     nokogiri (1.12.4)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
+    pagy (3.14.0)
     pg (1.2.3)
     racc (1.5.2)
     rack (2.2.3)

@@ -1,0 +1,13 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./components/themes";
+
+@import "./components/trix/editor";
+@import "./components/trix/content";
+@import "./components/trix/clipboard";
+@import "./components/player";
+@import "./components/bookmarks";
+@import "./components/pagy";
+@import "./components/forms";

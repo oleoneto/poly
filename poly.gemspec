@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 6.1.4", ">= 6.1.4.1"
   spec.add_dependency "discard", "~> 1.2"
+  spec.add_dependency "pagy", "~> 3.5"
   spec.add_development_dependency "rspec-rails"
   spec.add_development_dependency "annotate"
 end

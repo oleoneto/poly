@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Poly</title>
+  <title><%= Rails.application.class %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%#= stylesheet_link_tag "poly/application", media: "all" %>
-  <%= stylesheet_pack_tag 'poly/application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'poly/application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_tag "application", media: "all" %>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
 
