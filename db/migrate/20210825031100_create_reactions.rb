@@ -2,7 +2,7 @@ class CreateReactions < ActiveRecord::Migration[6.1]
   def change
     create_table :reactions, id: :uuid do |t|
       t.belongs_to :user, null: false, type: :uuid, foreign_key: { on_delete: :cascade }, index: true
-      t.string :type, null: false, index: true
+      t.string :type, null: false, index: true, limit: 20
       t.string :reactable_type, null: false, index: true
       t.uuid :reactable_id, null: false, index: true
       t.json :data, null: false, default: {}

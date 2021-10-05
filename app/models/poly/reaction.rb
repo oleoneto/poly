@@ -3,12 +3,13 @@
 # Table name: reactions
 #
 #  id                :uuid             not null, primary key
-#  reactable_type    :string           not null
 #  discarded_at      :datetime
 #  is_private        :boolean          default(TRUE), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  reactable_type    :string           not null
 #  reactable_id      :integer          not null
+#  reaction_type      :integer          not null
 #  user_id           :uuid             not null
 #
 # Indexes
