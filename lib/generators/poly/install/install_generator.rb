@@ -3,7 +3,7 @@ module Poly
     class InstallGenerator < ::Rails::Generators::Base
       def copy_poly_migrations
         # Copy all migrations, including ActionMailbox, ActionText, and ActiveStorage
-        rails_command "railties:install:migrations", inline: true
+        rails_command "railties:install:migrations FROM=poly", inline: true
       end
     end
   end
