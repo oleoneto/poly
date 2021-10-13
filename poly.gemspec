@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.homepage    = "https://github.com/oleoneto/poly"
   spec.summary     = "An assortment of generic features"
   spec.license     = "MIT"
-  spec.required_ruby_version = ">= 2.4.0"
+  spec.required_ruby_version = ">= 2.5.0"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
@@ -22,7 +22,10 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 6.1.4", ">= 6.1.4.1"
   spec.add_dependency "discard", "~> 1.2"
-  spec.add_dependency "pagy", "~> 3.5"
+  spec.add_dependency "pagy", "~> 4.8"
   spec.add_development_dependency "rspec-rails"
   spec.add_development_dependency "annotate"
+  spec.add_development_dependency "sass-rails"
+  spec.add_development_dependency "cssbundling-rails"
+  spec.add_development_dependency "jsbundling-rails"
 end

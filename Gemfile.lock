@@ -3,7 +3,7 @@ PATH
   specs:
     poly (0.1.0)
       discard (~> 1.2)
-      pagy (~> 3.5)
+      pagy (~> 4.8)
       rails (~> 6.1.4, >= 6.1.4.1)
 
 GEM
@@ -75,16 +75,21 @@ GEM
     byebug (11.1.3)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    cssbundling-rails (0.2.4)
+      railties (>= 6.0.0)
     diff-lcs (1.4.4)
     discard (1.2.0)
       activerecord (>= 4.2, < 7)
     erubi (1.10.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
+    ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    jsbundling-rails (0.1.9)
+      railties (>= 6.0.0)
     loofah (2.12.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -99,7 +104,7 @@ GEM
     nokogiri (1.12.4)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
-    pagy (3.14.0)
+    pagy (4.11.0)
     pg (1.2.3)
     racc (1.5.2)
     rack (2.2.3)
@@ -149,6 +154,16 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -158,6 +173,7 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     thor (1.1.0)
+    tilt (2.0.10)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     websocket-driver (0.7.5)
@@ -171,11 +187,14 @@ PLATFORMS
 DEPENDENCIES
   annotate
   byebug
+  cssbundling-rails
   faker
+  jsbundling-rails
   pg (~> 1.1)
   poly!
   rspec-rails
+  sass-rails
   sqlite3
 
 BUNDLED WITH
-   2.1.4
+   2.2.29

@@ -4,6 +4,7 @@ module Poly
 
     config.generators do |generators|
       generators.test_framework :rspec
+      generators.assets false
     end
   end
 
