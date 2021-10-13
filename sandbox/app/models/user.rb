@@ -18,7 +18,7 @@ class User < ApplicationRecord
   include Poly::Concerns::Sortable
   include Poly::Concerns::Trasher
 
-  has_many :articles, class_name: "Poly::Article"
+  has_many :articles, class_name: 'Poly::Article', foreign_key: :author_id
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates_uniqueness_of :email

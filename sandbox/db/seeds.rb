@@ -14,11 +14,10 @@ end
 # ==============================
 # Articles
 # ==============================
-10.times do
+5.times do
   puts "Adding article"
 
-  Poly::Article.create!(
-    user: User.first,
+  User.first.articles.create(
     title: Faker::Lorem.sentence(word_count: 3, supplemental: false, random_words_to_add: 2),
     status: Faker::Boolean.boolean(true_ratio: 0.9) ? :published : :unlisted,
     content: Faker::Lorem.paragraph(sentence_count: 4, supplemental: false, random_sentences_to_add: 7),

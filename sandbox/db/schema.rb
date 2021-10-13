@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
   end
 
   create_table "articles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
+    t.uuid "author_id", null: false
     t.string "title", null: false
     t.string "language"
     t.string "excerpt", limit: 144, default: "", null: false
@@ -84,12 +84,12 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
     t.datetime "discarded_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_articles_on_author_id"
     t.index ["discarded_at"], name: "index_articles_on_discarded_at"
     t.index ["is_private"], name: "index_articles_on_is_private"
     t.index ["language"], name: "index_articles_on_language"
     t.index ["status"], name: "index_articles_on_status"
     t.index ["title"], name: "index_articles_on_title"
-    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "comments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "archives", "users", on_delete: :cascade
-  add_foreign_key "articles", "users", on_delete: :cascade
+  add_foreign_key "articles", "users", column: "author_id", on_delete: :cascade
   add_foreign_key "comments", "users", on_delete: :cascade
   add_foreign_key "follows", "users", column: "followee_id", on_delete: :cascade
   add_foreign_key "follows", "users", on_delete: :cascade

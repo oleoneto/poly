@@ -9,7 +9,7 @@ class CreatePolyTables < ActiveRecord::Migration[6.1]
     end
 
     create_table :articles, id: :uuid do |t|
-      t.belongs_to :user, null: false, type: :uuid, foreign_key: { on_delete: :cascade }, index: true
+      t.references :author, null: false, type: :uuid, foreign_key: { to_table: :users, on_delete: :cascade }, index: true
       t.string :title, null: false, index: true
       t.string :language, null: true, index: true
       t.string :excerpt, null: false, :limit => 144, default: ''

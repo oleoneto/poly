@@ -15,6 +15,8 @@ module Dummy
       generator.orm :active_record, primary_key_type: :uuid
     end
 
+    config.log_level = :warn
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
