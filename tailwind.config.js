@@ -13,7 +13,7 @@ module.exports = {
   purge: [
     "./app/**/*.{html,html.erb}",
     "./app/helpers/**/*.rb",
-    "./app/assets/javascript/**/*.{js,jsx,ts,tsx,vue}"
+    "./app/assets/javascript?s/**/*.{js,jsx,ts,tsx,vue}"
   ],
   darkMode: false,
   corePlugins: {
@@ -22,10 +22,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        cyan: colors.cyan,
-        'light-blue': colors.sky,
-        rose: colors.rose,
-        teal: colors.teal
+          amber: colors.amber,
+          'cool-gray': colors.coolGray,
+          cyan: colors.cyan,
+          rose: colors.rose,
+          teal: colors.teal,
+          sky: colors.sky,
+          'warm-gray': colors.warmGray,
       },
       backgroundColor: {
         primary: withOpacity('--color-bg-primary'),
