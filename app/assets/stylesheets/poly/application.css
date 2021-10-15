@@ -1,6 +1,6 @@
 /*
-    To import .css files, use either of the following syntax:
-    @import "poly/filename.css";
-    require poly/filename
+//= require poly/trix
+//= require poly/tailwind
+//= require poly/highlight-android
+//= require_self
 */
-@import "poly/tailwind.css";

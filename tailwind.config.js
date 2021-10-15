@@ -15,7 +15,7 @@ module.exports = {
     "./app/helpers/**/*.rb",
     "./app/assets/javascript?s/**/*.{js,jsx,ts,tsx,vue}"
   ],
-  darkMode: false,
+  darkMode: 'class',
   corePlugins: {
     preflight: true // remove to skip css reset
   },

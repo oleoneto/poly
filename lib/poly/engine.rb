@@ -6,6 +6,11 @@ module Poly
       generators.test_framework :rspec
       generators.assets false
     end
+
+    initializer "poly" do |app|
+      app.config.assets.precompile << "poly/application.js"
+      app.config.assets.precompile << "poly/application.css"
+    end
   end
 
   # Do not prefix table names with `poly_`

@@ -1,0 +1,15 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/*! purgecss start ignore */
+@import "./components/_themes.scss";
+
+@import "./components/trix/_clipboard.scss";
+@import "./components/trix/_content.scss";
+@import "./components/trix/_editor.scss";
+
+@import "./components/_player.scss";
+@import "./components/_pagination.scss";
+@import "./components/_forms.scss";
+/*! purgecss end ignore */
