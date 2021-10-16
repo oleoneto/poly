@@ -2,8 +2,8 @@
 <html>
 <head>
   <title><%= Rails.application.class %></title>
-  <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "poly/application" %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
+  <%= javascript_include_tag "poly/application", media: "all", "data-turbolinks-track": "reload" %>
 
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>

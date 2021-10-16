@@ -2,16 +2,16 @@
   <p class="text-2xl font-semibold py-2">Comments</p>
 
   <% if commentable.comments.latest.each do |comment| %>
-  <%= render 'comments/comment', commentable: commentable, comment: comment %>
+  <%= render comment, commentable: commentable, comment: comment %>
   <% end.empty? %>
   <p class="text-secondary">No comments yet.</p>
   <% end %>
 
-  <% if current_user %>
-  <%= render 'comments/form', commentable: commentable %>
+  <% if is_logged_in? %>
+  <%= render 'poly/comments/form', commentable: commentable %>
   <% else %>
-  <p class="text-secondary pt-12">
-    Join the conversation by <%= link_to 'signing in', new_session_path(:user), class: "text-blue-600" %>.
-  </p>
+    <p class="text-secondary pt-12">
+      Join the conversation by <%= link_to 'signing in', sign_in_path, class: "text-blue-600" %>.
+    </p>
   <% end %>
 </div>

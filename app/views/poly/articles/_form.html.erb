@@ -1,0 +1,27 @@
+<%= form_with(model: article, :html => {class: 'form flex flex-col'}) do |form| %>
+  <% if article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+        <% article.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-2">
+    <%= form.label :title, class: "label-base" %>
+    <%= form.text_field :title, class: "input-base block text-3xl leading-8 font-extrabold tracking-tight sm:text-5xl" %>
+  </div>
+
+  <div class="my-2">
+    <%= form.label :content, class: "label-base" %>
+    <%= form.rich_text_area :content, class: "input-base" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit nil, class: "p-2 mb-6 bg-green-600 hover:bg-green-700 text-white text-sm font-bold rounded transition duration-200" %>
+  </div>
+<% end %>
