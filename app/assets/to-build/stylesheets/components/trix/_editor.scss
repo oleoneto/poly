@@ -20,13 +20,10 @@
       @apply bg-gray-100;
     }
 
-    .trix-button {
-      background-color: #F98989 !important;
-    }
+    .trix-button {}
   }
 
   trix-toolbar {
-    @apply bg-tertiary;
     @apply py-2 px-2 rounded-sm rounded-b-none;
   }
 }

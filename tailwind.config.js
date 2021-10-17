@@ -13,12 +13,9 @@ module.exports = {
   purge: [
     "./app/**/*.{html,html.erb}",
     "./app/helpers/**/*.rb",
-    "./app/assets/javascript?s/**/*.{js,jsx,ts,tsx,vue}"
+    "./app/assets/to-build/packs/**/*.{js,jsx,ts,tsx,vue}",
   ],
   darkMode: 'class',
-  corePlugins: {
-    preflight: true // remove to skip css reset
-  },
   theme: {
     extend: {
       colors: {
