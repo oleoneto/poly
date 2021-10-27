@@ -1,0 +1,49 @@
+.article_color {
+  &__programming,
+  &__scripting {
+    @apply bg-yellow-400 text-white;
+    &_secondary {
+      @apply bg-yellow-500;
+    }
+  }
+
+  &__data,
+  &__sql,
+  &__databases {
+    @apply bg-cyan-600 text-white;
+    &_secondary {
+      @apply bg-gray-200 text-gray-600;
+    }
+  }
+
+  &__math,
+  &__physics,
+  &__chemistry {
+    @apply bg-indigo-600 text-white;
+    &_secondary {
+      @apply bg-gray-50 text-gray-800;
+    }
+  }
+
+  &__human-languages,
+  &__narratives {
+    @apply bg-gray-500 text-white;
+    &_secondary {
+      @apply bg-gray-50 text-gray-800;
+    }
+  }
+
+  &__history {
+    @apply bg-red-500 text-white;
+    &_secondary {
+      @apply bg-yellow-800;
+    }
+  }
+
+  &__video-lesson {
+    @apply bg-purple-400;
+    &_secondary {
+      @apply bg-gray-50 text-gray-800;
+    }
+  }
+}

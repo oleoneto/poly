@@ -8,6 +8,7 @@ Poly::Engine.routes.draw do
     resources :comments
     resources :reactions
   end
+  get 'tags/:tag', to: 'articles#index', as: :tag
   resources :trash
   resources :users
 

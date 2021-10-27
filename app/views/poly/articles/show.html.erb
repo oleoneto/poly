@@ -26,9 +26,12 @@
         </div>
 
         <p class="my-4 block text-3xl text-center leading-8 font-extrabold tracking-tight sm:text-5xl">
-          <%= @article.title %>
+          <%= @article.title %> <%= @article.discarded? ? "(In trash)" : ""  %>
         </p>
 
+        <div class="text-center">
+          <%= render "poly/tags/list", taggable: @article %>
+        </div>
       </h1>
     </div>
 

@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 import WaveSurfer from "wavesurfer.js"
 import CursorPlugin from "wavesurfer.js/src/plugin/cursor"
 import RegionsPlugin from "wavesurfer.js/src/plugin/regions"
@@ -45,6 +45,12 @@ export default class extends Controller {
         "waveform"
     ]
 
+    static classes = [
+        'playing',
+        'paused',
+        'loading'
+    ]
+
     get sources() {
         return Array.from(document.querySelectorAll('audio'))
     }
@@ -52,7 +58,7 @@ export default class extends Controller {
     get audio() {
         if (this.loadFromCache && this.cachedAudio) {
             let { id, data, source } = JSON.parse(this.cachedAudio)
-            let elapsedTime = parseFloat(localStorage.getItem('EK::player:time:elapsed')) || 0
+            let elapsedTime = parseFloat(localStorage.getItem('poly::player:time:elapsed')) || 0
             let element = new WaveformAudio(id, source, data.title, elapsedTime)
 
             let location = this.sources.findIndex(audio => audio.id === id)
@@ -143,7 +149,7 @@ export default class extends Controller {
         this.loadFromCache = (this.element.dataset.loadCache === 'true')
         this.saveToCache = (this.element.dataset.saveCache === 'true')
 
-        this.playbackRate = parseFloat(localStorage.getItem('EK::player:rate')) || this.playbackRate
+        this.playbackRate = parseFloat(localStorage.getItem('poly::player:rate')) || this.playbackRate
 
         this.setPlaybackRate()
 
@@ -244,7 +250,7 @@ export default class extends Controller {
     }
 
     setPlaybackRate() {
-        localStorage.setItem('EK::player:rate', this.playbackRate)
+        localStorage.setItem('poly::player:rate', this.playbackRate)
         this['speedTarget'].innerText = `${this.playbackRate}x`
         this.wavesurfer.setPlaybackRate(this.playbackRate)
     }
@@ -271,7 +277,7 @@ export default class extends Controller {
 
     updateElapsedTime() {
         this['elapsedTimeTarget'].innerText = numeral(this.wavesurfer.getCurrentTime()).format("00:00:00")
-        localStorage.setItem('EK::player:time:elapsed', this.wavesurfer.getCurrentTime())
+        localStorage.setItem('poly::player:time:elapsed', this.wavesurfer.getCurrentTime())
     }
 
     updateTotalTime() {
@@ -283,19 +289,19 @@ export default class extends Controller {
     // ====================
 
     get cachedAudio() {
-        return localStorage.getItem('EK::player:now:playing')
+        return localStorage.getItem('poly::player:now:playing')
     }
 
     cacheAudioData(element) {
         if (!this.saveToCache) return;
 
-        localStorage.setItem('EK::player:now:playing', JSON.stringify({
+        localStorage.setItem('poly::player:now:playing', JSON.stringify({
             data: element.dataset, source: element.src, id: element.id
         }))
     }
 
     invalidateCachedAudioData() {
-        localStorage.removeItem('EK::player:now:playing')
+        localStorage.removeItem('poly::player:now:playing')
     }
     
     // ====================

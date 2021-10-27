@@ -150,6 +150,24 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
     t.index ["user_id"], name: "index_shares_on_user_id"
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.string "taggable_type", null: false
+    t.uuid "taggable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tag_id", "taggable_id", "taggable_type"], name: "index_unique_tag_item"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_tags_on_name"
+  end
+
   create_table "trashes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.string "trashable_type", null: false
@@ -157,7 +175,7 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["trashable_type", "trashable_id"], name: "index_trashes_on_trashable"
-    t.index ["user_id", "trashable_id", "trashable_type"], name: "index_unique_trash_item"
+    t.index ["user_id", "trashable_id", "trashable_type"], name: "index_unique_trash_item", unique: true
     t.index ["user_id"], name: "index_trashes_on_user_id"
   end
 
@@ -179,5 +197,6 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
   add_foreign_key "reactions", "users", on_delete: :cascade
   add_foreign_key "shares", "users", column: "invitee_id", on_delete: :cascade
   add_foreign_key "shares", "users", on_delete: :cascade
+  add_foreign_key "taggings", "tags", on_delete: :cascade
   add_foreign_key "trashes", "users", on_delete: :cascade
 end

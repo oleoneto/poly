@@ -8,7 +8,7 @@ class CreatePolyTables < ActiveRecord::Migration[6.1]
     end
 
     create_table :articles, id: :uuid do |t|
-      t.belongs_to :user, null: false, type: :uuid, foreign_key: { on_delete: :cascade }, index: true
+      t.references :author, null: false, type: :uuid, foreign_key: { to_table: :users, on_delete: :cascade }, index: true
       t.string :title, null: false, index: true
       t.string :language, null: true, index: true
       t.string :excerpt, null: false, :limit => 144, default: ''
@@ -59,6 +59,18 @@ class CreatePolyTables < ActiveRecord::Migration[6.1]
       t.references :trashable, type: :uuid, polymorphic: true, null: false, index: true
       t.timestamps
       t.index [:user_id, :trashable_id, :trashable_type], name: "index_unique_trash_item"
+    end
+
+    create_table :tags do |t|
+      t.string :name, index: true, null: false, unique: true
+      t.timestamps
+    end
+
+    create_table :taggings do |t|
+      t.belongs_to :tag, null: false, foreign_key: { on_delete: :cascade }
+      t.references :taggable,  type: :uuid, polymorphic: true, null: false, index: true
+      t.timestamps
+      t.index [:tag_id, :taggable_id, :taggable_type], name: "index_unique_tag_item"
     end
   end
 end

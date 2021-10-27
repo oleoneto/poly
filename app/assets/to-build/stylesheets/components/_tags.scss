@@ -1,0 +1,11 @@
+.tag-cloud {
+  width: 400px;
+  line-height: 1.6em;
+  .s { @apply text-blue-500 text-xs }
+  .m { @apply text-blue-600 text-lg }
+  .l { @apply text-blue-700 text-3xl }
+}
+
+.tag-list {
+  a { @apply text-blue-700; }
+}

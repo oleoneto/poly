@@ -12,6 +12,7 @@
   "devDependencies": {
     "@hotwired/stimulus": "^3.0.1",
     "@rails/actiontext": "^6.1.4-1",
+    "@rails/request.js": "^0.0.5",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/line-clamp": "^0.2.1",

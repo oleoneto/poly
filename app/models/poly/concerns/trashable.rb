@@ -21,7 +21,12 @@ module Poly
       # Add record to trash
       def trash!
         Trash.create(user: self.user, trashable: self)
+        self.discard if self.undiscarded?
       end
+
+      # def in_trash?
+      #   Trash
+      # end
 
       # Remove record from trash
       def untrash!

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html data-controller="theme" data-theme-target="theme">
 <head>
-  <title><%= Rails.application.class %></title>
+  <title><%= @page_title.empty? ? "" : "#{@page_title} | " %><%= Rails.application.class %></title>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
   <%= javascript_include_tag "poly/application", media: "all", "data-turbolinks-track": "reload" %>
 
@@ -10,6 +10,9 @@
 </head>
 <body>
 
+<%= render 'poly/offline_indicator' %>
+<%= render 'poly/notices' %>
+<%#= render 'poly/theme_toggle' %>
 <%= yield %>
 
 </body>

@@ -4,13 +4,10 @@ export default class extends Controller {
     static targets = [ "source", "output" ]
 
     connect() {
-        console.log(this.sourceTarget.value);
-        this.sourceTarget.addEventListener('keyup', () => this.sync())
+        this['sourceTarget'].addEventListener('input', (event) => this.sync(event))
     }
 
-    sync() {
-        console.log(this.sourceTarget.value);
-        console.log(this.outputTarget.innerHTML);
-        this.outputTarget.innerHTML = this.sourceTarget.value;
+    sync(event) {
+        this['outputTargets'].forEach(t => t.textContent = event.target.value);
     }
 }

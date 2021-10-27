@@ -22,8 +22,16 @@ $ gem install poly
 ```
 
 ### Install in your application
+This step will copy all the migrations.
 ```bash
 $ rails g poly:install
+```
+
+Add the routes to your application
+```ruby
+Rails.application.routes.draw do
+    mount Poly::Engine => "/poly"
+end
 ```
 
 ## Contributing

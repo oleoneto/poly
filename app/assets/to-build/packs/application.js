@@ -2,6 +2,8 @@ import "./trix/plugins"
 
 import "./highlight"
 
+import "./name-that-color"
+
 import { Application } from "@hotwired/stimulus"
 window.Stimulus = Application.start()
 
@@ -10,6 +12,7 @@ import AudioScannerController from "./controllers/audio_scanner_controller"
 import ColorController from "./controllers/color_controller"
 import ClipboardController from "./controllers/clipboard_controller"
 import CommentsController from "./controllers/comments_controller"
+import DynamicSelectController from "./controllers/dynamic_select_controller"
 import MenuController from "./controllers/menu_controller"
 import OfflineController from "./controllers/offline_controller"
 import ReactiveTextController from "./controllers/reactive_text_controller"
@@ -24,9 +27,10 @@ Stimulus.register("audio_scanner", AudioScannerController)
 Stimulus.register("color", ColorController)
 Stimulus.register("clipboard", ClipboardController)
 Stimulus.register("comments", CommentsController)
+Stimulus.register("dyno", DynamicSelectController)
 Stimulus.register("menu", MenuController)
 Stimulus.register("offline", OfflineController)
-Stimulus.register("reactive", ReactiveTextController)
+Stimulus.register("reactive-text", ReactiveTextController)
 Stimulus.register("search", SearchController)
 Stimulus.register("session", SessionController)
 Stimulus.register("player", PlayerController)

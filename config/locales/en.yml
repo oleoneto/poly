@@ -14,3 +14,6 @@ en:
       not_authorized: "permission denied"
       unable_to_follow: "unable to follow user"
       not_subscribed: "not subscribed"
+  views:
+    errors:
+      offline: "Your browser appears to be offline."

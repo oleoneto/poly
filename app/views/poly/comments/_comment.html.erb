@@ -1,1 +1,39 @@
-<h1>Comment</h1>
+<div class="py-2 mb-2 flex flex-col space-y-4">
+  <div class="flex flex-row items-center space-x-2 justify-between">
+    <p class="text-xs text-secondary">
+      <%= link_to user_url(comment.user) do %>
+        <span class="font-semibold text-blue-600">
+          <%= comment.user.name %>
+        </span>
+      <% end %>
+
+      <span class="italic">
+        on <%= comment.created_at.to_formatted_s(:long) %>
+      </span>
+    </p>
+
+    <div class="flex flex-row items-center space-x-2 text-sm">
+      <% if is_logged_in? && !is_author?(comment.user) %>
+      <%=  link_to 'Reply', '', class: "text-blue-600"  %>
+      <%  end %>
+
+      <% if is_author?(comment.user) %>
+        <%= link_to comment_url(comment), method: :delete, data: {confirm: 'Are you sure?'}, class: "button-red" do %>
+          <svg class="w-4 h-4 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="flex flex-row items-start space-x-1.5">
+    <%= link_to user_url(comment.user), class: "rounded-full bg-secondary flex flex-shrink-0 items-center p-1" do %>
+      <%= image_tag user_avatar(comment.user), class: "w-8 h-8 rounded-full object-fit", alt: comment.user.name %>
+    <% end %>
+
+    <article class="pl-1 prose-lg prose-indigo text-primary">
+      <%= comment.content %>
+    </article>
+  </div>
+</div>

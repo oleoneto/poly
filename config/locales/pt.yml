@@ -14,3 +14,6 @@ pt:
       not_authorized: "sem permissão"
       unable_to_follow: "erro em seguir usuário"
       not_subscribed: "sem subscrição"
+  views:
+    errors:
+      offline: "O seu navegador não está conectado à internet."

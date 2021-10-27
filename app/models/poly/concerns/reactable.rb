@@ -7,7 +7,7 @@ module Poly
       prepend Discard::Model
 
       included do
-        has_many :reactions, as: :reactable, dependent: :destroy, class_name: "Poly:Reaction"
+        has_many :reactions, as: :reactable, dependent: :destroy, class_name: "Poly::Reaction"
 
         scope :with_reactions, -> { include(:reactions) }
 

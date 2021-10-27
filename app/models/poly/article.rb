@@ -11,7 +11,7 @@
 #  title        :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  user_id      :uuid             not null
+#  author_id    :uuid             not null
 #
 # Indexes
 #
@@ -20,7 +20,7 @@
 #  index_articles_on_language      (language)
 #  index_articles_on_public_uid    (public_uid)
 #  index_articles_on_title         (title)
-#  index_articles_on_user_id       (user_id)
+#  index_articles_on_author_id     (user_id)
 #
 # Foreign Keys
 #
@@ -31,12 +31,14 @@ module Poly
     include Concerns::Commentable
     include Concerns::Reactable
     include Concerns::Sortable
+    include Concerns::Taggable
     include Concerns::Trashable
     include Concerns::Visibility
 
     has_rich_text :content
 
-    belongs_to :author, class_name: "User", foreign_key: "user_id"
+    belongs_to :author, class_name: "User", dependent: :destroy
+    alias :user :author # needed by trashable
 
     enum status: {unlisted: 0, published: 1}
 

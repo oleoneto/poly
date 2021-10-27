@@ -10,8 +10,9 @@ module Poly
     end
 
     def show
+      @pagination, @articles = pagy(Poly::Article.kept.where(author: @user), items: 5)
     end
-    
+
     def edit
     end
 

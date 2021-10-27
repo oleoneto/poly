@@ -12,4 +12,6 @@
 @import "./components/_player.scss";
 @import "./components/_pagination.scss";
 @import "./components/_forms.scss";
+@import "./components/_colors.scss";
+@import "./components/_tags.scss";
 /*! purgecss end ignore */
