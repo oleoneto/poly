@@ -2,7 +2,7 @@
 #
 # Table name: reactions
 #
-#  id                :uuid             not null, primary key
+#  id                :bigint           not null, primary key
 #  discarded_at      :datetime
 #  is_private        :boolean          default(TRUE), not null
 #  created_at        :datetime         not null
@@ -10,7 +10,7 @@
 #  reactable_type    :string           not null
 #  reactable_id      :integer          not null
 #  kind              :string           not null
-#  user_id           :uuid             not null
+#  user_id           :bigint           not null
 #
 # Indexes
 #

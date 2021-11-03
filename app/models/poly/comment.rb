@@ -2,7 +2,7 @@
 #
 # Table name: comments
 #
-#  id               :uuid              not null, primary key
+#  id               :bigint            not null, primary key
 #  commentable_type :string            not null
 #  content          :text              not null
 #  discarded_at     :datetime
@@ -10,7 +10,7 @@
 #  created_at       :datetime          not null
 #  updated_at       :datetime          not null
 #  commentable_id   :integer           not null
-#  user_id          :uuid              not null
+#  user_id          :bigint            not null
 #
 # Indexes
 #
@@ -33,6 +33,7 @@ module Poly
     include Poly::Concerns::Visibility
 
     has_rich_text :content
+    has_prefix_id :comm
 
     belongs_to :commentable, polymorphic: true
 

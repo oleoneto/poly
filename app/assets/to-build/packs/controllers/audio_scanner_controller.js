@@ -1,25 +1,29 @@
-import { Controller } from 'stimulus'
+import {Controller} from 'stimulus'
 
 export default class extends Controller {
-  static targets = []
+    static targets = []
 
-  initialize() {}
-
-  connect() {
-    let loadFromCache = (this.element.dataset.loadCache === 'true')
-    let saveToCache = (this.element.dataset.saveCache === 'true')
-
-    if (this.audios.length >= 1) {
-      this.element.insertAdjacentHTML('afterbegin', this.template)
+    initialize() {
     }
-  }
 
-  get audios() {
-    return document.querySelectorAll('audio')
-  }
+    connect() {
+        let loadFromCache = (this.element.dataset.loadCache === 'true')
+        let saveToCache = (this.element.dataset.saveCache === 'true')
 
-  get template() {
-    return `
+        if (this.audios.length >= 1) {
+            console.log(this.audios.length);
+            this.element.insertAdjacentHTML('afterbegin', this.template)
+        }
+
+        console.log('Audio scanner...');
+    }
+
+    get audios() {
+        return document.querySelectorAll('audio')
+    }
+
+    get template() {
+        return `
     <div data-controller="waveform" data-load-cache="${this.loadFromCache}" data-save-cache="${this.saveToCache}" id="interactive-player" class="py-4 relative border-b border-tertiary text-primary w-full">
     
       <div id="mobile-player" data-waveform-target="mobile" class="md:hidden w-full"></div>
@@ -94,5 +98,5 @@ export default class extends Controller {
         </div>
       </div>
     `
-  }
+    }
 }

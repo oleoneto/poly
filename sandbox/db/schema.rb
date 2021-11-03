@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_175725) do
+ActiveRecord::Schema.define(version: 2021_11_02_183426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -25,27 +25,27 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
     t.index ["message_id", "message_checksum"], name: "index_action_mailbox_inbound_emails_uniqueness", unique: true
   end
 
-  create_table "action_text_rich_texts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
     t.string "record_type", null: false
-    t.uuid "record_id", null: false
+    t.bigint "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table "active_storage_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.uuid "record_id", null: false
-    t.uuid "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -57,16 +57,16 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "blob_id", null: false
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "archives", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
+  create_table "archives", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "archivable_type", null: false
-    t.uuid "archivable_id", null: false
+    t.bigint "archivable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["archivable_type", "archivable_id"], name: "index_archives_on_archivable"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
     t.index ["user_id"], name: "index_archives_on_user_id"
   end
 
-  create_table "articles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "author_id", null: false
+  create_table "articles", force: :cascade do |t|
+    t.bigint "author_id", null: false
     t.string "title", null: false
     t.string "language"
     t.string "excerpt", limit: 144, default: "", null: false
@@ -92,10 +92,10 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
     t.index ["title"], name: "index_articles_on_title"
   end
 
-  create_table "comments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "commentable_type", null: false
-    t.uuid "commentable_id", null: false
+    t.bigint "commentable_id", null: false
     t.boolean "is_private", default: false, null: false
     t.datetime "discarded_at"
     t.datetime "created_at", precision: 6, null: false
@@ -105,9 +105,9 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "follows", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
-    t.uuid "followee_id", null: false
+  create_table "follows", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "followee_id", null: false
     t.datetime "discarded_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -117,11 +117,11 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
     t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
-  create_table "reactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
+  create_table "reactions", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "kind", limit: 20, null: false
     t.string "reactable_type", null: false
-    t.uuid "reactable_id", null: false
+    t.bigint "reactable_id", null: false
     t.json "data", default: {}, null: false
     t.boolean "is_private", default: true, null: false
     t.datetime "discarded_at"
@@ -135,11 +135,11 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
     t.index ["user_id"], name: "index_reactions_on_user_id"
   end
 
-  create_table "shares", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
-    t.uuid "invitee_id", null: false
+  create_table "shares", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "invitee_id", null: false
     t.string "shareable_type", null: false
-    t.uuid "shareable_id", null: false
+    t.bigint "shareable_id", null: false
     t.datetime "discarded_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
   create_table "taggings", force: :cascade do |t|
     t.bigint "tag_id", null: false
     t.string "taggable_type", null: false
-    t.uuid "taggable_id", null: false
+    t.bigint "taggable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tag_id", "taggable_id", "taggable_type"], name: "index_unique_tag_item"
@@ -168,18 +168,18 @@ ActiveRecord::Schema.define(version: 2021_10_05_175725) do
     t.index ["name"], name: "index_tags_on_name"
   end
 
-  create_table "trashes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
+  create_table "trashes", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "trashable_type", null: false
-    t.uuid "trashable_id", null: false
+    t.bigint "trashable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["trashable_type", "trashable_id"], name: "index_trashes_on_trashable"
-    t.index ["user_id", "trashable_id", "trashable_type"], name: "index_unique_trash_item", unique: true
+    t.index ["user_id", "trashable_id", "trashable_type"], name: "index_unique_trash_item"
     t.index ["user_id"], name: "index_trashes_on_user_id"
   end
 
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false

@@ -1,1 +1,25 @@
-<h1>Trash#Index</h1>
+<main class="mx-auto px-5 md:px-10 lg:px-20">
+  <div class="pt-10 pb-12 px-4 sm:px-6 lg:pt-24 lg:pb-10 lg:px-8">
+    <div class="relative max-w-7xl mx-auto lg:max-w-7xl">
+      <div>
+        <h2 class="text-4xl tracking-tight font-extrabold text-primary sm:text-6xl">
+          Trash
+        </h2>
+        <div class="mt-3 sm:mt-4 lg:grid lg:grid-cols-2 lg:gap-5 lg:items-center">
+          <p class="text-xl text-secondary">
+            Your recently deleted files.
+          </p>
+        </div>
+      </div>
+
+      <div class="py-8 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <% if @trash.latest.each do |trash| %>
+          <%= render 'poly/trash/trash', trash: trash %>
+        <% end.empty? %>
+          <p class="text-secondary">No trash items</p>
+        <% end %>
+      </div>
+      <%== pagy_nav(@paginator) if @paginator.pages > 1 %>
+    </div>
+  </div>
+</main>

@@ -2,7 +2,7 @@
 #
 # Table name: archives
 #
-#  id              :uuid             not null, primary key
+#  id              :bigint           not null, primary key
 #  archivable_type :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -26,6 +26,8 @@ module Poly
     include Poly::Concerns::Sortable
     include Poly::Concerns::Trashable
     include Poly::Concerns::UserOwned
+
+    has_prefix_id :arc
 
     belongs_to :archivable, polymorphic: true
 

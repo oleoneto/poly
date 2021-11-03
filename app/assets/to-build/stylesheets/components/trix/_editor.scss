@@ -1,29 +1,28 @@
-@layer components {
-  trix-editor {
-    @apply overflow-x-auto w-full overflow-y-scroll;
-    max-height: 500px;
+trix-editor {
+  @apply rounded shadow-sm;
+  @apply w-full overflow-x-auto overflow-y-scroll;
+  max-height: 500px;
 
-    code {
-      @apply dark:bg-gray-700 bg-gray-200;
-      @apply py-0.5 px-1 rounded-sm;
-    }
-
-    pre {
-      @apply border-2 border-secondary bg-tertiary;
-      @apply p-4 my-2 rounded;
-    }
+  code {
+    @apply dark:bg-gray-700 bg-gray-200;
+    @apply py-0.5 px-1 rounded-sm;
   }
 
-  trix-toolbar {
-    .trix-button--icon {
-      @apply text-primary;
-      @apply bg-gray-100;
-    }
+  pre {
+    @apply border border-tertiary bg-tertiary;
+    @apply p-4 my-2 rounded;
+  }
+}
 
-    .trix-button {}
+trix-toolbar {
+  .trix-button--icon {
+    @apply text-primary;
+    @apply bg-gray-100;
   }
 
-  trix-toolbar {
-    @apply py-2 px-2 rounded-sm rounded-b-none;
-  }
+  .trix-button {}
+}
+
+trix-toolbar {
+  @apply py-2 px-2 rounded-sm rounded-b-none;
 }

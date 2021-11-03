@@ -11,11 +11,17 @@ module Sandbox
   class Application < Rails::Application
     config.load_defaults Rails::VERSION::STRING.to_f
 
-    config.generators do |generator|
-      generator.orm :active_record, primary_key_type: :uuid
-    end
+    config.after_initialize do
+      ActionText::ContentHelper.allowed_attributes.add 'style'
+      ActionText::ContentHelper.allowed_attributes.add 'controls'
+      ActionText::ContentHelper.allowed_attributes.add 'poster'
 
-    config.log_level = :warn
+      ActionText::ContentHelper.allowed_tags.add 'video'
+      ActionText::ContentHelper.allowed_tags.add 'audio'
+      ActionText::ContentHelper.allowed_tags.add 'source'
+      ActionText::ContentHelper.allowed_tags.add 'embed'
+      ActionText::ContentHelper.allowed_tags.add 'iframe'
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #

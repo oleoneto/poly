@@ -1,44 +1,58 @@
 require 'faker'
+require 'database_cleaner'
 
-if User.all.count < 3
-  puts "No users found..."
-  3.times do
-    User.create(
-      first_name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
-      email: Faker::Internet.email
-    )
-  end
-end
+DatabaseCleaner.clean_with(:truncation)
 
-# ==============================
-# Articles
-# ==============================
-5.times do
-  puts "Adding article"
-
-  User.first.articles.create(
-    title: Faker::Lorem.sentence(word_count: 3, supplemental: false, random_words_to_add: 2),
-    status: Faker::Boolean.boolean(true_ratio: 0.9) ? :published : :unlisted,
-    content: Faker::Lorem.paragraph(sentence_count: 4, supplemental: false, random_sentences_to_add: 7),
-    excerpt: Faker::Lorem.paragraph(sentence_count: 4),
-    is_private: Faker::Boolean.boolean(true_ratio: 0.1),
-    discarded_at: Faker::Boolean.boolean(true_ratio: 0.45) ? Time.now : nil
+def create_user
+  User.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email
   )
 end
 
-# ==============================
-# Reactions: Bookmarks, Comments, and Likes
-# ==============================
-Poly::Article.all.each do |article|
-  User.first.reactions.create(reactable: article, kind: :bookmark)
-  User.second.reactions.create(reactable: article, kind: :bookmark)
-  User.last.reactions.create(reactable: article, kind: :bookmark)
+def create_article(user)
+  title = Faker::Boolean.boolean(true_ratio: 0.5) ? Faker::Quote.famous_last_words : Faker::TvShows::HeyArnold.quote
+  tag_list = "#{Faker::Book.genre}, #{Faker::Verb.base}"
 
-  User.first.comments.create(commentable: article, content: Faker::Lorem.sentence(word_count: 5))
-  User.last.comments.create(commentable: article, content: Faker::Lorem.sentence(word_count: 5))
+  user.articles.create(
+    title: title,
+    status: Faker::Boolean.boolean(true_ratio: 0.9) ? :published : :unlisted,
+    content: Faker::Lorem.paragraph(sentence_count: 24, supplemental: false, random_sentences_to_add: 7),
+    excerpt: Faker::Lorem.paragraph(sentence_count: 4),
+    is_private: Faker::Boolean.boolean(true_ratio: 0.01),
+    discarded_at: Faker::Boolean.boolean(true_ratio: 0.01) ? Time.now : nil,
+    tag_list: tag_list
+  )
+end
 
-  User.first.reactions.create(reactable: article, kind: :like)
-  User.second.reactions.create(reactable: article, kind: :like)
-  User.last.reactions.create(reactable: article, kind: :like)
+def create_comment(user, commentable)
+  user.comments.create(commentable: commentable, content: Faker::Lorem.sentence(word_count: 5))
+end
+
+def create_reaction(user, reactable, reaction)
+  user.reactions.create(reactable: reactable, kind: reaction)
+end
+
+
+# ==============================
+# Users
+# ==============================
+User.create(first_name: 'Leo', last_name: 'Neto', email: 'oleoneto@gmail.com')
+
+8.times do |index|
+  user = create_user
+  puts "Added user #{user.name}"
+
+  # ==============================
+  # Articles
+  # ==============================
+
+  if index % 2 == 0
+    5.times do
+      article = create_article(user)
+      puts "Added article #{article.title} by #{article.author.name}"
+    end
+    puts "--------------------------------------------------------"
+  end
 end

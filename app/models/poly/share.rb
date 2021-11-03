@@ -2,14 +2,14 @@
 #
 # Table name: shares
 #
-#  id             :uuid             not null, primary key
+#  id             :bigint           not null, primary key
 #  discarded_at   :datetime
 #  shareable_type :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  invitee_id     :bigint           not null
 #  shareable_id   :integer          not null
-#  user_id        :uuid             not null
+#  user_id        :bigint           not null
 #
 # Indexes
 #
@@ -31,6 +31,8 @@ module Poly
     include Poly::Concerns::Sortable
     include Poly::Concerns::Trashable
     include Poly::Concerns::UserOwned
+
+    has_prefix_id :share
 
     validates :invitee, presence: true
     validate :circular_invite

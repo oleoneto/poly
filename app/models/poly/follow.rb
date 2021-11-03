@@ -2,13 +2,13 @@
 #
 # Table name: follows
 #
-#  id           :uuid             not null, primary key
+#  id           :bigint           not null, primary key
 #  discarded_at :datetime
 #  public_uid   :string(18)       not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  followee_id  :bigint           not null
-#  user_id      :uuid             not null
+#  user_id      :bigint           not null
 #
 # Indexes
 #

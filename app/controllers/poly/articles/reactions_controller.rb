@@ -1,6 +1,11 @@
-require_dependency "poly/application_controller"
-
 module Poly
-  class Articles::ReactionsController < ApplicationController
+  class Articles::ReactionsController < Poly::ReactionsController
+    before_action :set_reactable, only: :create
+
+    private
+
+    def set_reactable
+      @reactable = Article.find(params[:article_id])
+    end
   end
 end

@@ -22,10 +22,15 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 6.1.4", ">= 6.1.4.1"
   spec.add_dependency "discard", "~> 1.2"
+  spec.add_dependency "jbuilder", "~> 2.7"
   spec.add_dependency "pagy", "~> 4.8"
+  spec.add_dependency "prefixed_ids", "~> 1.2"
+  spec.add_dependency "apipie-rails", "~> 0.5"
+  spec.add_dependency "image_processing", "~> 1.2"
   spec.add_development_dependency "rspec-rails"
   spec.add_development_dependency "annotate"
   spec.add_development_dependency "sass-rails"
   spec.add_development_dependency "cssbundling-rails"
   spec.add_development_dependency "jsbundling-rails"
+  spec.add_development_dependency "database_cleaner"
 end

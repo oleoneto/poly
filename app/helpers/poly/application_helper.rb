@@ -7,7 +7,7 @@ module Poly
     end
 
     def is_logged_in?
-      current_user if defined?(current_user)
+      return current_user if defined?(current_user)
       false
     end
 

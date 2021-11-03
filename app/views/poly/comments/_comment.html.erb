@@ -1,10 +1,14 @@
-<div class="py-2 mb-2 flex flex-col space-y-4">
+<div class="py-2 mb-2 flex flex-col space-y-4 px-1.5 rounded">
   <div class="flex flex-row items-center space-x-2 justify-between">
     <p class="text-xs text-secondary">
-      <%= link_to user_url(comment.user) do %>
-        <span class="font-semibold text-blue-600">
-          <%= comment.user.name %>
-        </span>
+      <% if defined? user %>
+        <%= link_to user do %>
+          <span class="font-semibold text-blue-600"><%= user.name %></span>
+        <% end %>
+      <% else %>
+        <%= link_to comment.commentable do %>
+          <span class="font-semibold text-blue-600"><%= comment.commentable.title %></span>
+        <% end %>
       <% end %>
 
       <span class="italic">
@@ -14,7 +18,7 @@
 
     <div class="flex flex-row items-center space-x-2 text-sm">
       <% if is_logged_in? && !is_author?(comment.user) %>
-      <%=  link_to 'Reply', '', class: "text-blue-600"  %>
+      <%=  link_to 'Reply', '', class: "text-blue-600 font-semibold"  %>
       <%  end %>
 
       <% if is_author?(comment.user) %>
@@ -27,12 +31,12 @@
     </div>
   </div>
 
-  <div class="flex flex-row items-start space-x-1.5">
-    <%= link_to user_url(comment.user), class: "rounded-full bg-secondary flex flex-shrink-0 items-center p-1" do %>
+  <div class="flex flex-row align-center space-x-1.5">
+    <%= link_to user_url(comment.user), class: "rounded-full flex flex-shrink-0 p-0" do %>
       <%= image_tag user_avatar(comment.user), class: "w-8 h-8 rounded-full object-fit", alt: comment.user.name %>
     <% end %>
 
-    <article class="pl-1 prose-lg prose-indigo text-primary">
+    <article class="pl-1 text-primary">
       <%= comment.content %>
     </article>
   </div>

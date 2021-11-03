@@ -1,7 +1,10 @@
 require "poly/version"
 require "poly/engine"
 require "discard"
+require "image_processing"
+require 'prefixed_ids'
 require "pagy"
+require 'jbuilder'
 
 module Poly
   mattr_accessor :trash_ttl

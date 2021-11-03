@@ -1,4 +1,4 @@
-<%= link_to user, class: "mention inline-flex space-x-2 items-center align-center p-0 m-0", data: "#{user.name}" do %>
-  <%#= image_tag user_avatar(user), class: "w-5 h-5 rounded border border-tertiary" %>
+<%= link_to user, class: "mention", data: "#{user.name}" do %>
+  <%= image_tag user_avatar(user), class: "w-4 h-4 rounded border border-tertiary" %>
   <p><%= user.name %></p>
 <% end %>

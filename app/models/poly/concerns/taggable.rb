@@ -20,9 +20,10 @@ module Poly
         end
 
         def tag_list=(names)
-          self.tags = names.split(",").map do |n|
-            Poly::Tag.where(name: n.strip).first_or_create!
-          end
+          self.tags = names.split(",").map do |name|
+            tag = name.downcase.strip
+            Poly::Tag.where(name: tag).first_or_create! if tag.length >= 3
+          end.compact
         end
       end
 

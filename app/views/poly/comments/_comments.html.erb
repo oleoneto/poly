@@ -2,7 +2,7 @@
   <p class="text-2xl font-semibold py-2">Comments</p>
 
   <% if commentable.comments.latest.each do |comment| %>
-  <%= render comment, commentable: commentable %>
+  <%= render comment, commentable: commentable, user: comment.user %>
   <% end.empty? %>
   <p class="text-secondary">No comments yet.</p>
   <% end %>

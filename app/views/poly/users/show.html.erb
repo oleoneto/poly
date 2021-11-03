@@ -1,15 +1,15 @@
-<main>
+<main class="text-primary">
   <div>
     <img class="h-32 w-full object-cover lg:h-48" src="https://via.placeholder.com/800?Text=Header+Image" alt="">
   </div>
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5 border-b pb-4">
+    <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5 border-b border-tertiary pb-4">
       <div class="flex">
-        <%= image_tag user_avatar(@user), class: "h-24 w-24 rounded-full bg-gray-100 ring-4 ring-white sm:h-32 sm:w-32", alt: @user.name %>
+        <%= image_tag user_avatar(@user), class: "h-24 w-24 rounded-full bg-tertiary ring-4 ring-white sm:h-32 sm:w-32", alt: @user.name %>
       </div>
       <div class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
         <div class="sm:hidden md:block mt-6 min-w-0 flex-1">
-          <h1 class="text-2xl font-bold text-gray-900 truncate">
+          <h1 class="text-2xl font-bold truncate">
             <%= @user.name %>
             <span class="inline-block">
               <%= verified_badge if @user.verified? %>
@@ -17,15 +17,15 @@
           </h1>
         </div>
         <div class="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-          <button type="button" class="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
-            <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <button type="button" class="inline-flex justify-center px-4 py-2 border border-tertiary shadow-sm text-sm font-medium rounded-md text-primary bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+            <svg class="-ml-1 mr-2 h-5 w-5 text-secondary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
               <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
             </svg>
             <span>Message</span>
           </button>
-          <button type="button" class="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
-            <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <button type="button" class="inline-flex justify-center px-4 py-2 border border-tertiary shadow-sm text-sm font-medium rounded-md text-primary bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+            <svg class="-ml-1 mr-2 h-5 w-5 text-secondary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path d="M5 3a1 1 0 000 2c5.523 0 10 4.477 10 10a1 1 0 102 0C17 8.373 11.627 3 5 3z" />
               <path d="M4 9a1 1 0 011-1 7 7 0 017 7 1 1 0 11-2 0 5 5 0 00-5-5 1 1 0 01-1-1zM3 15a2 2 0 114 0 2 2 0 01-4 0z" />
             </svg>
@@ -34,18 +34,33 @@
         </div>
       </div>
     </div>
+
     <div class="hidden sm:block md:hidden mt-6 min-w-0 flex-1">
       <h1 class="text-2xl font-bold text-gray-900 truncate">
         <%= @user.name %>
       </h1>
     </div>
 
-    <div class="mt-12 sm:mt-16">
-      <h2 class="font-semibold text-2xl">Articles (<%= @user.articles.kept.count %>)</h2>
-      <div class="grid gap-4 grid-cols-3 my-4">
-        <%= render @articles %>
+    <div class="divide-y divide-tertiary">
+      <% if @comments.count > 0 %>
+      <div id="comments" class="my-8 sm:my-12">
+        <p class="font-semibold text-2xl">Latest comments (<%= @user.comments.kept.count %>)</p>
+        <%= render @comments %>
       </div>
-      <%== pagy_nav(@pagination) if @pagination.pages > 1 %>
+      <% end %>
+
+      <% if @articles.count > 0 %>
+        <div id="articles" class="py-8">
+          <div class="flex justify-between">
+          <p class="font-semibold text-2xl">Articles (<%= @article_pagination.count %>)</p>
+          <%= link_to "All Articles", articles_path, class: "text-indigo-600 underline items-center" %>
+          </div>
+          <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 my-4">
+            <%= render @articles %>
+          </div>
+          <%== pagy_nav(@article_pagination) if @article_pagination.pages > 1 %>
+        </div>
+      <% end %>
     </div>
   </div>
 </main>

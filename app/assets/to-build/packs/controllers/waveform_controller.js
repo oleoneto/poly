@@ -86,6 +86,8 @@ export default class extends Controller {
     }
 
     connect() {
+        this.element.id = Math.random().toString(16);
+
         // NOTE: Only create the waveform player on medium+ sized devices
         window.onresize = () => {
             if (window.innerWidth >= 768 && !this.wavesurfer) {

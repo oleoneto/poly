@@ -4,6 +4,7 @@
 
 /*! purgecss start ignore */
 @import "./components/_themes.scss";
+@import "./components/_tribute.scss";
 
 @import "./components/trix/_clipboard.scss";
 @import "./components/trix/_content.scss";

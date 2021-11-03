@@ -3,15 +3,10 @@ import { get as request } from "@rails/request.js"
 
 export default class extends Controller {
     static targets = ['select']
+
     static values = {
         url: String,
         param: String
-    }
-
-    connect() {
-        console.log('Dyno')
-        console.log(this['urlValue'])
-        console.log(this['paramValue'])
     }
 
     change(event) {

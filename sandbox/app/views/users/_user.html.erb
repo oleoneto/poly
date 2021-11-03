@@ -1,0 +1,4 @@
+<%= link_to user, class: "mention", data: "#{user.name}" do %>
+  <%= image_tag user_avatar(user) %>
+  <p><%= user.name %></p>
+<% end %>

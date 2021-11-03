@@ -2,12 +2,12 @@
 #
 # Table name: trashes
 #
-#  id             :uuid             not null, primary key
+#  id             :bigint           not null, primary key
 #  trashable_type :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  trashable_id   :integer          not null
-#  user_id        :uuid             not null
+#  user_id        :bigint           not null
 #
 # Indexes
 #
@@ -25,6 +25,8 @@ module Poly
   class Trash < ApplicationRecord
     include Poly::Concerns::Sortable
     include Poly::Concerns::UserOwned
+
+    has_prefix_id :trash
 
     belongs_to :trashable, polymorphic: true
 

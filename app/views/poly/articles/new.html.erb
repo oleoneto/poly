@@ -1,0 +1,15 @@
+<section class="relative py-8 overflow-hidden">
+  <div class="relative px-4 sm:px-6 lg:px-8">
+    <div class="text-lg max-w-prose mx-auto">
+      <h1>
+        <span class="block text-center text-xs text-blue-600 font-semibold tracking-wide uppercase">
+          <%= Time.now.to_formatted_s(:long) %> <span> - </span>
+          <%= link_to current_user, current_user, class: "text-indigo-600 underline" %>
+        </span>
+      </h1>
+    </div>
+    <div class="mt-6 prose prose-indigo prose-xl text-primary mx-auto">
+      <%= render "poly/articles/form", article: @article %>
+    </div>
+  </div>
+</section>

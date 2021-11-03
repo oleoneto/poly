@@ -5,6 +5,10 @@
     }
   }
 
+  code {
+    @apply rounded bg-tertiary text-primary p-0.5;
+  }
+
   .tooltip {
     @apply relative py-1 rounded-sm w-7 h-5 inline-block;
 

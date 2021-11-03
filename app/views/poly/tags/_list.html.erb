@@ -1,4 +1,4 @@
-<div class="tag-list space-x-2">
+<div class="tag-list space-x-2 lowercase">
   <% taggable.tags.map do |tag|  %>
     <%= link_to "##{tag.name}", tag_path(tag.name) %>
   <% end %>

@@ -1,0 +1,11 @@
+<div class="new--comment-form py-4">
+  <%= form_for [commentable, Poly::Comment.new] do |form| %>
+    <div class="mb-2">
+      <%= form.rich_text_area :content, data: { controller: "autocomplete attachment-blocker", autocomplete_url_value: user_completion_path } %>
+    </div>
+
+    <div class="mb-2">
+      <%= form.submit nil, class: "mb-6 px-2 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded shadow-lg hover:shadow-xl transition duration-200" %>
+    </div>
+  <% end %>
+</div>

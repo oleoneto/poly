@@ -2,7 +2,7 @@
 #
 # Table name: articles
 #
-#  id           :uuid             not null, primary key
+#  id           :bigint           not null, primary key
 #  discarded_at :datetime
 #  is_private   :boolean          default(TRUE), not null
 #  language     :string
@@ -11,7 +11,7 @@
 #  title        :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  author_id    :uuid             not null
+#  author_id    :bigint           not null
 #
 # Indexes
 #
@@ -28,6 +28,7 @@
 #
 module Poly
   class Article < ApplicationRecord
+    include ActionText::Attachable
     include Concerns::Commentable
     include Concerns::Reactable
     include Concerns::Sortable
@@ -36,6 +37,7 @@ module Poly
     include Concerns::Visibility
 
     has_rich_text :content
+    has_prefix_id :art
 
     belongs_to :author, class_name: "User", dependent: :destroy
     alias :user :author # needed by trashable

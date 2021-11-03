@@ -1,5 +1,5 @@
 <section class="relative py-8 overflow-hidden">
-  <div class="relative px-4 sm:px-6 lg:px-8">
+  <div class="relative px-4 sm:px-6 lg:px-8 text-primary">
     <div class="text-lg max-w-prose mx-auto">
       <h1>
         <div class="mt-8">
@@ -8,25 +8,33 @@
               <%= image_tag user_avatar(@article.author), class: "mx-auto h-10 w-10 rounded-full" %>
             </div>
             <div class="mt-3 text-center md:mt-0 md:ml-4 md:flex md:items-center">
-              <%= link_to @article.author.name, @article.author, class: "text-base font-medium text-gray-900" %>
+              <%= link_to @article.author.name, @article.author, class: "text-base font-medium text-indigo-600" %>
 
               <svg class="hidden md:block mx-1 h-5 w-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M11 0h3L9 20H6l5-20z" />
               </svg>
 
-              <div class="text-base font-medium text-gray-500"><%= @article.created_at.to_formatted_s(:short) %></div>
+              <div class="text-base font-medium text-secondary"><%= @article.created_at.to_formatted_s(:short) %></div>
 
               <svg class="hidden md:block mx-1 h-5 w-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M11 0h3L9 20H6l5-20z" />
               </svg>
 
-              <%= link_to "All articles", articles_path, class: "text-base font-medium text-gray-500" %>
+              <%= link_to "All articles", articles_path, class: "text-base font-medium text-secondary" %>
+
+              <% if is_author?(@article.author) %>
+                <svg class="hidden md:block mx-1 h-5 w-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M11 0h3L9 20H6l5-20z" />
+                </svg>
+
+                <%= link_to "Edit", edit_article_path, class: "text-base text-indigo-600" %>
+              <% end %>
             </div>
           </div>
         </div>
 
-        <p class="my-4 block text-3xl text-center leading-8 font-extrabold tracking-tight sm:text-5xl">
-          <%= @article.title %> <%= @article.discarded? ? "(In trash)" : ""  %>
+        <p class="my-4 block text-3xl text-center leading-8 font-extrabold tracking-tight sm:text-5xl capitalize">
+          <%= @article.title %>
         </p>
 
         <div class="text-center">
@@ -35,13 +43,13 @@
       </h1>
     </div>
 
-    <article class="mt-6 prose prose-indigo prose-xl text-primary mx-auto" data-controller="clipboard color">
+    <article class="mt-6 text-primary prose prose-indigo prose-xl mx-auto" data-controller="clipboard color">
       <%= @article.content %>
     </article>
 
     <div class="pt-16">
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="relative py-16 px-8 bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden lg:px-16 border-tertiary">
+        <div class="relative py-16 px-8 bg-secondary rounded-xl overflow-hidden lg:px-16 border-tertiary">
           <%= render 'poly/comments/comments' , commentable: @article %>
         </div>
       </div>

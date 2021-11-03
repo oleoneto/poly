@@ -16,3 +16,4 @@
 # Node dependencies
 node_modules
 app/assets/__*
+/yarn-error.log
