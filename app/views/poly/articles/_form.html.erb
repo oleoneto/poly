@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="my-2">
-    <%= form.text_field :title, class: "input-base bg-secondary text-secondary-x border-tertiary text-2xl leading-8 font-extrabold tracking-tight sm:text-4xl" %>
+    <%= form.text_field :title, class: "input-base bg-primary text-secondary-x border-tertiary text-2xl leading-8 font-extrabold tracking-tight sm:text-4xl" %>
   </div>
 
   <div class="my-2">
     <%= form.label :tag_list, "Tags (separated by commas)", class: "text-sm" %>
-    <%= form.text_field :tag_list, class: "input-base bg-secondary border-tertiary leading-8 tracking-tight", data: {controller: "autocomplete", autocomplete_url_value: tag_completion_path, autocomplete_auto_value: "true", autocomplete_trigger_value: "#"} %>
+    <%= form.text_field :tag_list, class: "input-base bg-primary border-tertiary leading-8 tracking-tight", data: {controller: "autocomplete", autocomplete_url_value: tag_completion_path, autocomplete_auto_value: "true", autocomplete_trigger_value: "#"} %>
 
     <div class="text-xs lowercase pt-1.5">
       <%= render "poly/tags/list", taggable: article %>
@@ -26,13 +26,13 @@
 
   <div class="my-2 relative" data-controller="text-counter" data-text-counter-limit-value="144" data-text-counter-error-class="text-red-500 border-red-400 font-bold">
     <%= form.label :excerpt, class: "text-sm" %>
-    <%= form.text_area :excerpt, class: "input-base border-tertiary bg-secondary max-h-24", data: {text_counter_target: "source"}, rows: "3" %>
-    <span class="absolute text-sm border bg-secondary border-secondary rounded px-2 right-2 bottom-5" data-text-counter-target="output"></span>
+    <%= form.text_area :excerpt, class: "input-base bg-primary border-tertiary max-h-24", data: {text_counter_target: "source"}, rows: "3", min: "3", max: "144" %>
+    <span class="absolute text-sm border bg-secondary border-tertiary rounded px-2 right-2 bottom-5" data-text-counter-target="output"></span>
   </div>
 
   <div class="my-8 relative" data-controller="text-counter" data-text-counter-word-mode-value="true" >
-    <%= form.rich_text_area :content, class: "input-base border-tertiary", data: {controller: "autocomplete", autocomplete_url_value: user_completion_path, autocomplete_trigger_value: "@", text_counter_target: "source" } %>
-    <span class="absolute text-sm border bg-primary rounded px-2 right-2 bottom-2" data-text-counter-target="output"></span>
+    <%= form.rich_text_area :content, class: "input-base bg-primary border-tertiary", data: {controller: "autocomplete", autocomplete_url_value: user_completion_path, autocomplete_trigger_value: "@", text_counter_target: "source" } %>
+    <span class="absolute text-sm border border-tertiary bg-primary rounded px-2 right-2 bottom-2" data-text-counter-target="output"></span>
   </div>
 
   <div class="-mx-3 my-2">

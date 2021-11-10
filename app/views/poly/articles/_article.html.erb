@@ -1,14 +1,14 @@
-<div class="relative article_color__programming p-5 rounded-lg text-white shadow-md">
+<div class="relative colored-article <%= article_color(article.tag_list) %> p-5 rounded-lg shadow-md">
   <div class="flex justify-between text-xs pb-3" style="font-size: 0.59rem">
     <p class="uppercase font-semibold"><%= relative_time_in_words(article.created_at) %></p>
-    <%= link_to article.author.name, article.author, class: "uppercase article_color__programming_secondary text-gray-200 rounded-sm px-1 font-bold" %>
+    <%= link_to article.author.name, article.author, class: "uppercase secondary rounded-sm px-1 font-bold" %>
   </div>
 
   <%= link_to article, class: "mt-2 block", data: "#{article.title}" do %>
-    <h3 class="pb-4 font-bold text-2xl hover:text-gray-100 md:truncate capitalize">
+    <h3 class="pb-4 font-bold text-2xl md:truncate capitalize">
       <%= article.title %>
     </h3>
   <% end %>
 
-  <p class="text-sm text-gray-100 pb-2"><%= article.excerpt %></p>
+  <p class="text-sm pb-2"><%= article.excerpt %></p>
 </div>

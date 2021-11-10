@@ -28,7 +28,6 @@ export default class extends Controller {
     }
 
     disconnect() {
-        console.log('Disconnected autocomplete')
         this.tribute.detach(this.element)
     }
 
@@ -44,8 +43,6 @@ export default class extends Controller {
         })
         this.tribute.attach((this.element))
         this.tribute.range.pasteHtml = this._pasteHTML.bind(this)
-
-        this.element.classList.add('tribute-container')
     }
 
     listen() {

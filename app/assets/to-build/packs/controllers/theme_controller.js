@@ -13,6 +13,8 @@ export default class extends Controller {
     }
 
     connect() {
+        this.loadTheme();
+
         if (!this.shouldEnable) return;
 
         this.theme = localStorage.theme;
@@ -26,5 +28,9 @@ export default class extends Controller {
 
         this['themeTarget'].classList.toggle('dark', this.theme === 'dark');
         this['toggleTarget'].classList.toggle('translate-x-full', this.theme === 'light');
+    }
+
+    loadTheme() {
+        this['themeTarget'].classList.toggle('dark', localStorage.theme === 'dark');
     }
 }

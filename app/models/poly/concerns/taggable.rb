@@ -21,7 +21,7 @@ module Poly
 
         def tag_list=(names)
           self.tags = names.split(",").map do |name|
-            tag = name.downcase.strip
+            tag = name.downcase.strip.delete_prefix("#")
             Poly::Tag.where(name: tag).first_or_create! if tag.length >= 3
           end.compact
         end

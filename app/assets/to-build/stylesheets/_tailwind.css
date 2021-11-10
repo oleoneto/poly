@@ -7,8 +7,7 @@
 @import "./components/_tribute.scss";
 
 @import "./components/trix/_clipboard.scss";
-@import "./components/trix/_content.scss";
-@import "./components/trix/_editor.scss";
+@import "./components/trix/_trix.scss";
 
 @import "./components/_player.scss";
 @import "./components/_pagination.scss";

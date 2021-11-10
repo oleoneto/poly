@@ -5,7 +5,7 @@
     <audio src="">Audio</audio>
     <%= audio_tag(main_app.polymorphic_url(blob), controls: true, data: { title: blob.filename }, class: "w-full") %>
   <% elsif blob.representable? %>
-    <%= image_tag blob.representation(resize_to_limit: [ 800, 600 ]) %>
+    <%= image_tag main_app.url_for(blob) %>
   <% end %>
-  <span class="text-xs"><%= blob.filename %></span>
+  <span class="text-xs caption"><%= blob.filename %></span>
 </figure>

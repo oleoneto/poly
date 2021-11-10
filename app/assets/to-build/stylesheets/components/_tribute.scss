@@ -20,16 +20,6 @@
   }
 }
 
-a.mention {
-  @apply text-sm text-white;
-  @apply inline-flex space-x-1 px-0.5 items-center;
-  @apply border rounded bg-blue-600 border-blue-500 hover:bg-blue-500 hover:border-blue-600;
-
-  img {
-    @apply w-4 h-4 rounded border border-tertiary;
-  }
-}
-
 turbo-frame {
   @apply border-2 border-amber-400 block;
 }

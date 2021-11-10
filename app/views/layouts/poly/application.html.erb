@@ -8,15 +8,7 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 </head>
-<body class="bg-primary">
-<% if is_logged_in? %>
-  <div class="top-0 z-10 fixed py-1 mb-20 w-full text-white bg-cyan-600 text-center">
-    <p>
-      Logged in as <strong><%= link_to current_user.name, current_user %></strong>
-    </p>
-    <%= render 'poly/theme_toggle' %>
-  </div>
-<% end %>
+<body class="bg-primary text-primary">
 
 <%= render 'poly/offline_indicator' %>
 <%= render 'poly/notices' %>

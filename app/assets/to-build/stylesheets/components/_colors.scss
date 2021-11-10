@@ -1,48 +1,103 @@
-.article_color {
-  &__programming,
-  &__scripting {
-    @apply bg-yellow-400 text-white;
-    &_secondary {
-      @apply bg-yellow-500;
+.colored-article {
+  &.base {
+    @apply bg-secondary border border-tertiary text-primary;
+    .secondary {
+      @apply bg-tertiary text-primary;
     }
   }
 
-  &__data,
-  &__sql,
-  &__databases {
-    @apply bg-cyan-600 text-white;
-    &_secondary {
+  /**/
+  &.entertainment, &.movies, &.sports {
+    @apply bg-red-500 text-white;
+    .secondary {
+      @apply bg-gray-200 text-secondary;
+    }
+  }
+
+  /*
+    accounting
+    bank
+    banking
+    budgets
+    business
+    ecommerce
+    economics
+    finances
+  */
+  &.business, &.finances {
+    @apply bg-blue-600 text-white;
+    .secondary {
       @apply bg-gray-200 text-gray-600;
     }
   }
 
-  &__math,
-  &__physics,
-  &__chemistry {
-    @apply bg-indigo-600 text-white;
-    &_secondary {
+  /*
+    code
+    coding
+    data
+    database
+    databases
+    programming
+    scripting
+    sql
+  */
+  &.coding, &.programming {
+    @apply bg-yellow-400 text-white;
+    .secondary {
+      @apply bg-yellow-500;
+    }
+  }
+
+  /*
+    art
+    galleries
+    gallery
+    media
+    video
+  */
+  &.media, &.art, &.design {
+    @apply bg-amber-200 text-black;
+    .secondary {
       @apply bg-gray-50 text-gray-800;
     }
   }
 
-  &__human-languages,
-  &__narratives {
+  /*
+    geography
+    history
+    languages
+    narratives
+    stories
+    story
+  */
+  &.social-sciences {
     @apply bg-gray-500 text-white;
-    &_secondary {
+    .secondary {
       @apply bg-gray-50 text-gray-800;
     }
   }
 
-  &__history {
-    @apply bg-red-500 text-white;
-    &_secondary {
-      @apply bg-yellow-800;
+  /*
+    chemistry
+    math
+    physics
+    science
+    sciences
+  */
+  &.sciences {
+    @apply bg-indigo-600 text-white;
+    .secondary {
+      @apply bg-gray-50 text-gray-800;
     }
   }
 
-  &__video-lesson {
-    @apply bg-purple-400;
-    &_secondary {
+  /*
+    countries
+    tourism
+  */
+  &.travel, &.tourism, &.trips {
+    @apply bg-pink-500 text-white;
+    .secondary {
       @apply bg-gray-50 text-gray-800;
     }
   }

@@ -53,7 +53,28 @@ module.exports = {
       lineClamp: {
         10: '10',
         12: '12'
-      }
+      },
+      typography: theme => ({
+        DEFAULT: {
+          css: {
+            code: {
+              fontSize: 'inherit'
+            },
+            blockquote: {
+              color: 'inherit'
+            },
+            strong: {
+              color: 'inherit'
+            },
+            'code::before': {
+              content: 'none',
+            },
+            'code::after': {
+              content: 'none',
+            },
+          }
+        }
+      })
     }
   },
   variants: {
