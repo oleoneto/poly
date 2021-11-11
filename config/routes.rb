@@ -17,6 +17,7 @@ Poly::Engine.routes.draw do
   end
   resources :trash
   resources :users
+  resources :settings, only: [:index]
 
   # API
   namespace :v1, defaults: { format: :json } do
