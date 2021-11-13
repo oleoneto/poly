@@ -13,7 +13,7 @@ module.exports = {
   purge: [
     "./app/**/*.{html,html.erb}",
     "./app/helpers/**/*.rb",
-    "./app/assets/to-build/packs/**/*.{js,jsx,ts,tsx,vue}",
+    "./app/assets/javascripts/build/**/*.{js,jsx,ts,tsx,vue}",
   ],
   darkMode: 'class',
   theme: {
@@ -26,6 +26,7 @@ module.exports = {
           teal: colors.teal,
           sky: colors.sky,
           'warm-gray': colors.warmGray,
+        ...colors,
       },
       backgroundColor: {
         primary: withOpacity('--color-bg-primary'),

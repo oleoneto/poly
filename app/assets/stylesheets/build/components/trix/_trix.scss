@@ -55,7 +55,23 @@ trix-editor {
     }
   }
 
-  /* file attachment previews tbd */
+  .attachment__caption-editor {
+    height: 20px !important;
+  }
+
+  /* file attachment previews */
+  .attachment-gallery {
+    @apply grid grid-cols-4 gap-3;
+
+    [data-trix-cursor-target] { display: none !important; }
+
+    figcaption.attachment__caption { @apply text-xs; }
+
+    .attachment--preview {
+      @apply border border-gray-50;
+      img { @apply rounded-md shadow; }
+    }
+  }
 }
 
 /* Content Viewer */
@@ -125,12 +141,21 @@ trix-editor {
       font-family: inherit;
     }
 
-    @apply grid gap-2 grid-cols-3 py-8 m-0;
+    @apply grid gap-4 grid-cols-3 py-8 m-0;
 
     .attachment {
-      img { @apply w-full h-auto; }
+      @apply border border-gray-50;
 
-      .caption { @apply hidden; }
+      img {
+        @apply w-full h-auto rounded-md;
+        @apply hover:scale-105 transform transition shadow;
+      }
+    }
+  }
+
+  figure.attachment {
+    img {
+      @apply border border-tertiary rounded-md shadow;
     }
   }
 }

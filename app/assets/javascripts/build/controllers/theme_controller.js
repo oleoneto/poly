@@ -1,7 +1,7 @@
-import { Controller } from "stimulus"
+import {Controller} from '@hotwired/stimulus'
 
 export default class extends Controller {
-    static targets = [ "theme", "toggle" ]
+    static targets = ["theme", "toggle"]
 
     get shouldEnable() {
         if (!this['hasToggleTarget']) {

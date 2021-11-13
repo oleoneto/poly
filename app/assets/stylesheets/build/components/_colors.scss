@@ -42,7 +42,7 @@
     sql
   */
   &.coding, &.programming {
-    @apply bg-yellow-400 text-white;
+    @apply bg-yellow-400 text-gray-800;
     .secondary {
       @apply bg-yellow-500;
     }
@@ -56,7 +56,7 @@
     video
   */
   &.media, &.art, &.design {
-    @apply bg-amber-200 text-black;
+    @apply bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white;
     .secondary {
       @apply bg-gray-50 text-gray-800;
     }

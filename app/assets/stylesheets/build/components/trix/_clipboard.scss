@@ -9,7 +9,7 @@
   .code-sample {
     pointer-events: none;
     @apply bg-gray-800 border border-gray-800;
-    @apply px-2 py-0 rounded-md;
+    @apply px-2 py-0 my-6 rounded-md;
     @apply flex flex-row relative;
 
     button {

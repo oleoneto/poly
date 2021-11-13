@@ -16,7 +16,7 @@ export default class extends Controller {
     sync(_) {
         this['outputTargets'].forEach(t => {
             let content = this["wordModeValue"] ? this["sourceTarget"].value.split(" ") : this["sourceTarget"].value
-            t.textContent = `${content.length} ${this["wordModeValue"] ? "words" : "characters" }`
+            t.textContent = `${content.length} ${this["wordModeValue"] ? "words" : "characters"}`
 
             if (content.length > this["limitValue"])
                 t.classList.add(...this["errorClasses"])

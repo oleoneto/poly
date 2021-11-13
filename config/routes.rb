@@ -6,7 +6,6 @@ Poly::Engine.routes.draw do
   get 'autocomplete/articles', to: 'autocomplete#articles', as: :article_completion, defaults: {format: :json}
   get 'autocomplete/tags', to: 'autocomplete#tags', as: :tag_completion, defaults: {format: :json}
   get 'autocomplete/users', to: 'autocomplete#users', as: :user_completion, defaults: {format: :json}
-  get 'autocomplete', to: 'autocomplete#index', as: :site_completion, defaults: {format: :json}
 
   # Application
   get 'tags/:tag', to: 'articles#index', as: :tag
