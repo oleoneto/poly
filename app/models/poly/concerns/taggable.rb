@@ -9,10 +9,15 @@ module Poly
         has_many :taggings, as: :taggable, class_name: 'Poly::Tagging'
         has_many :tags, through: :taggings, class_name: 'Poly::Tag'
 
-        scope :with_tags, -> { include(:tags) }
+        scope :with_taggings, -> { include(:taggings) }
 
-        def self.tag_counts
-          Poly::Tag.select("tags.*, count(taggings.tag_id) as count").joins(:taggings).group("taggings.tag_id", "tags.id")
+        def self.tag_counts(ids)
+          Poly::Tag.select("tags.*, count(taggings.tag_id) as count")
+                   .joins(:taggings)
+                   .joins("LEFT JOIN #{self.table_name} ON taggings.taggable_id = #{self.table_name}.id")
+                   .where("taggings.taggable_type = ?", name)
+                   .where("#{self.table_name}.id IN (?)", ids)
+                   .group("taggings.tag_id", "tags.id")
         end
 
         def tag_list
