@@ -7,28 +7,6 @@ class CreatePolyTables < ActiveRecord::Migration[6.1]
       t.index [:user_id, :archivable_id, :archivable_type], name: "index_unique_archive_item"
     end
 
-    create_table :articles do |t|
-      t.references :author, null: false, foreign_key: { to_table: :users, on_delete: :cascade }, index: true
-      t.string :title, null: false, index: true
-      t.string :language, null: true, index: true
-      t.string :excerpt, null: false, :limit => 144, default: ''
-      t.integer :status, null: false, index: true
-      t.json :metadata, null: false, default: '{}'
-      t.string :content_hash, null: false
-      t.boolean :is_private, null: false, default: true, index: true
-      t.datetime :discarded_at, null: true, index: true
-      t.timestamps
-    end
-
-    create_table :comments do |t|
-      t.belongs_to :user, null: false, foreign_key: {  on_delete: :cascade }, index: true
-      t.references :commentable, polymorphic: true, null: false, index: true
-      t.string :content_hash, null: false
-      t.boolean :is_private, null: false, default: false
-      t.datetime :discarded_at, null: true, index: true
-      t.timestamps
-    end
-
     create_table :follows do |t|
       t.belongs_to :user, null: false, foreign_key: { on_delete: :cascade }
       t.references :followee, null: false, index: true, foreign_key: { to_table: :users, on_delete: :cascade }

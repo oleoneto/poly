@@ -26,8 +26,6 @@ module Poly
     include Poly::Concerns::Sortable
     include Poly::Concerns::UserOwned
 
-    has_prefix_id :trash
-
     belongs_to :trashable, polymorphic: true
 
     after_create :schedule_deletion

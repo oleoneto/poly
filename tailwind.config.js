@@ -1,5 +1,4 @@
 const colors = require("tailwindcss/colors");
-const defaultTheme = require("tailwindcss/defaultTheme")
 
 function withOpacity(variableName) {
   return ({ opacityValue }) => {
@@ -27,7 +26,6 @@ module.exports = {
           teal: colors.teal,
           sky: colors.sky,
           'warm-gray': colors.warmGray,
-        ...colors,
       },
       backgroundColor: {
         primary: withOpacity('--color-bg-primary'),
@@ -51,31 +49,6 @@ module.exports = {
         tertiary: withOpacity('--color-text-tertiary'),
         inverted: withOpacity('--color-text-inverted'),
       },
-      lineClamp: {
-        10: '10',
-        12: '12'
-      },
-      typography: theme => ({
-        DEFAULT: {
-          css: {
-            code: { fontSize: 'inherit' },
-            blockquote: { color: 'inherit' },
-            h1: { color: 'inherit' },
-            h2: { color: 'inherit' },
-            h3: { color: 'inherit' },
-            h4: { color: 'inherit' },
-            h5: { color: 'inherit' },
-            h6: { color: 'inherit' },
-            strong: { color: 'inherit' },
-            'code::before': { content: 'none' },
-            'code::after': { content: 'none' },
-            video: {
-              margin: '0 !important',
-              padding: '0'
-            },
-          }
-        }
-      })
     }
   },
   variants: {
@@ -85,10 +58,5 @@ module.exports = {
       borderColor: ['active']
     }
   },
-  plugins: [
-    require("@tailwindcss/aspect-ratio"),
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/line-clamp"),
-  ]
+  plugins: []
 };

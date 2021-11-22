@@ -27,8 +27,6 @@ module Poly
     include Poly::Concerns::Trashable
     include Poly::Concerns::UserOwned
 
-    has_prefix_id :arch
-
     belongs_to :archivable, polymorphic: true
 
     after_destroy :destroy_parent

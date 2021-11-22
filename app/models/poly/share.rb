@@ -29,10 +29,7 @@
 module Poly
   class Share < ApplicationRecord
     include Poly::Concerns::Sortable
-    include Poly::Concerns::Trashable
     include Poly::Concerns::UserOwned
-
-    has_prefix_id :share
 
     validates :invitee, presence: true
     validate :circular_invite

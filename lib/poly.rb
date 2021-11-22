@@ -1,11 +1,6 @@
 require "poly/version"
 require "poly/engine"
-require "image_processing"
-require "hotwire-rails"
-require 'jbuilder'
-require 'prefixed_ids'
-require 'language_list'
-require "cancancan"
+require "jbuilder"
 require "discard"
 require "pagy"
 

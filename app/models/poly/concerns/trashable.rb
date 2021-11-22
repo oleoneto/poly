@@ -2,6 +2,11 @@
 
 module Poly
   module Concerns
+    # Stores soft deletes in an intermediary table
+    #
+    # Options:
+    #
+    #
     module Trashable
       extend ActiveSupport::Concern
       prepend Discard::Model
@@ -9,13 +14,8 @@ module Poly
       included do
         has_many :trashes, as: :trashable, dependent: :destroy, class_name: "Poly::Trash"
 
-        after_create :check_if_discarded
         after_discard :trash!
         after_undiscard :untrash!
-      end
-
-      def check_if_discarded
-        trash! unless self.discarded_at.nil?
       end
 
       # Add record to trash
@@ -32,7 +32,7 @@ module Poly
       module ClassMethods
         # Deletes all records marked as discarded (or in trash)
         def clean_trash!
-          self.where.not(discarded_at: nil).destroy_all
+          self.discarded.destroy_all
         end
       end
     end
