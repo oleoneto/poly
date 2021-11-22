@@ -33,8 +33,8 @@ trix-editor {
     font-family: inherit;
 
     .mention {
-      @apply text-primary no-underline;
-      @apply inline-flex space-x-1 p-1 items-center rounded;
+      @apply text-white no-underline;
+      @apply inline-flex space-x-1 p-0.5 items-center rounded;
       @apply bg-blue-600 hover:bg-blue-500;
       @apply border border-blue-600 hover:border-blue-600;
 
@@ -44,7 +44,7 @@ trix-editor {
       }
 
       img {
-        @apply w-4 h-4 rounded border border-tertiary p-0 m-0;
+        @apply w-4 h-4 rounded-full border border-tertiary p-0 m-0;
         line-height: 0;
       }
 
@@ -120,13 +120,13 @@ trix-editor {
     }
 
     .mention {
-      @apply text-primary no-underline;
-      @apply inline-flex space-x-1 p-1 items-center rounded;
+      @apply text-white no-underline;
+      @apply inline-flex space-x-1 p-0.5 items-center rounded;
       @apply bg-blue-600 hover:bg-blue-500;
       @apply border border-blue-600 hover:border-blue-600;
 
       img {
-        @apply w-4 h-4 rounded border border-tertiary;
+        @apply w-4 h-4 rounded-full border border-tertiary;
       }
     }
   }
@@ -155,7 +155,27 @@ trix-editor {
 
   figure.attachment {
     img {
-      @apply border border-tertiary rounded-md shadow;
+      @apply border border-tertiary rounded-md shadow object-cover;
+    }
+  }
+
+  .attachment--preview {
+    img { @apply w-full h-full !important; }
+  }
+}
+
+trix-editor, .trix-content {
+  /* Media: Audio and Video */
+  .plyr {
+    @apply rounded-md;
+  }
+
+  .attachment {
+    &--mp3, &--mp4 {
+      img { @apply hidden; }
+      .attachment__caption {
+        @apply bg-inverted text-inverted border border-primary rounded p-1.5;
+      }
     }
   }
 }

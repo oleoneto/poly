@@ -3,12 +3,13 @@
 # Table name: articles
 #
 #  id           :bigint           not null, primary key
-#  discarded_at :datetime
-#  is_private   :boolean          default(TRUE), not null
 #  language     :string
 #  excerpt      :string           not null
 #  status       :string           not null
 #  title        :string           not null
+#  content_hash :string           not null
+#  is_private   :boolean          default(TRUE), not null
+#  discarded_at :datetime
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  author_id    :bigint           not null
@@ -30,6 +31,7 @@ module Poly
   class Article < ApplicationRecord
     include ActionText::Attachable
     include Concerns::Commentable
+    include Concerns::ContentHashable
     include Concerns::Reactable
     include Concerns::Sortable
     include Concerns::Taggable
@@ -39,18 +41,54 @@ module Poly
     has_rich_text :content
     has_prefix_id :art
 
-    belongs_to :author, class_name: "User", dependent: :destroy
+    broadcasts_to -> (article) { "articles" }, inserts_by: :prepend
+
+    belongs_to :author, class_name: "User"
     alias :user :author # needed by trashable
 
     enum status: {unlisted: 0, published: 1}
+    enum language: Hash[LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.iso_639_1] }]
 
     scope :published, -> { where(status: :published) }
-    scope :unlisted, -> { where(status: :unlisted) }
     scope :with_author, -> { includes(:author) }
 
     validates :title, length: { minimum: 3, maximum: 50}
     validates :content, presence: true
     validates :status, inclusion: { in: statuses.keys }
+    validates :language, inclusion: { in: languages.keys }
     validates :excerpt, length: { minimum: 3, maximum: 144 }
+
+    def colors
+      supported_tags = %w[
+          business
+          coding
+          entertainment
+          finances
+          media
+          movies
+          programming
+          sciences
+          social-sciences
+          sports
+          tourism
+          travel
+          trips
+      ]
+
+      tag_list.split(',').each do |tag|
+        return tag if supported_tags.include? tag.strip
+      end
+
+      'base'
+    end
+
+    def relative_creation_time
+      ActionController::Base.helpers.distance_of_time_in_words(Time.now, created_at)
+    end
+
+    private
+
+    # TODO:
+    # Use activejob to save information about the content everytime the article is saved
   end
 end

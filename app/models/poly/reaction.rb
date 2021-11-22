@@ -34,7 +34,7 @@ module Poly
     include Poly::Concerns::UserOwned
     include Poly::Concerns::Visibility
 
-    belongs_to :reactable, polymorphic: true
+    belongs_to :reactable, polymorphic: true, dependent: :destroy
 
     enum kind: {
       bookmark: 10,

@@ -1,5 +1,5 @@
 module Poly
-  module V1
+  module Api
     class TrashController < Poly::ApiController
       def index
         @trash = current_user.trashes.all

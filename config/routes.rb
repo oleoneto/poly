@@ -1,4 +1,5 @@
 Poly::Engine.routes.draw do
+  resources :things
   # Health Check
   resources :ping, only: [:index]
 
@@ -8,19 +9,19 @@ Poly::Engine.routes.draw do
   get 'autocomplete/users', to: 'autocomplete#users', as: :user_completion, defaults: {format: :json}
 
   # Application
-  get 'tags/:tag', to: 'articles#index', as: :tag
-  resources :archives
-  resources :articles, shallow: true do
-    resources :comments, module: :articles
-    resources :reactions, module: :articles
+  get 'articles/tags/:tag', to: 'articles#index', as: :tag
+  resources :articles do
+    resources :comments, only: [:create, :show, :destroy], module: :articles
+    resources :reactions, only: [:create, :destroy], module: :articles
   end
+  resources :archives
   resources :trash
   resources :users
   resources :settings, only: [:index]
 
   # API
-  namespace :v1, defaults: { format: :json } do
-    resources :archive, only: [:index]
+  namespace :api, defaults: { format: :json } do
+    resources :archives, only: [:index]
     resources :trash, only: [:index]
 
     resources :articles, shallow: true do

@@ -2,6 +2,8 @@ require_dependency "poly/application_controller"
 
 module Poly
   class UsersController < ApplicationController
+    load_and_authorize_resource
+
     before_action :set_user
     include Pagy::Backend
 
@@ -10,8 +12,8 @@ module Poly
     end
 
     def show
-      @article_pagination, @articles = pagy(Poly::Article.kept.where(author: @user), items: 5)
-      @comments = Poly::Comment.kept.where(user: @user).latest  #.last(5)
+      @article_pagination, @articles = pagy(Poly::Article.kept.where(author: @user).accessible_by(current_ability).latest, items: 5)
+      @comments = Poly::Comment.kept.where(user: @user).accessible_by(current_ability).latest.first(5)
       @has_content = @comments.count > 0 || @articles.count > 0
     end
 

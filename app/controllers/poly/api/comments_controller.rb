@@ -1,5 +1,5 @@
 module Poly
-  module V1
+  module Api
     class CommentsController < Poly::ApiController
       # Fetch comments for `current_user` if no `@commentable` is specified
       before_action -> { @commentable = current_user unless @commentable }

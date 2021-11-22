@@ -31,7 +31,6 @@ module Poly
     belongs_to :trashable, polymorphic: true
 
     after_create :schedule_deletion
-    after_destroy :destroy_parent unless :trashable.nil?
 
     # Stale records are those that have been in the trash for `T` amount of time
     scope :stale, -> { where("created_at <= ?", Time.zone.now - Poly::trash_ttl) }
@@ -43,10 +42,6 @@ module Poly
       Poly::CleanTrashJob
         .set(wait_until: Poly::trash_ttl.from_now)
         .perform_later(self)
-    end
-
-    def destroy_parent
-      trashable.destroy
     end
 
     def self.clean_stale!

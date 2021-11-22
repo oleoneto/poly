@@ -14,6 +14,7 @@ class CreatePolyTables < ActiveRecord::Migration[6.1]
       t.string :language, null: true, index: true
       t.string :excerpt, null: false, :limit => 144, default: ''
       t.integer :status, null: false, index: true
+      t.string :content_hash, null: false
       t.boolean :is_private, null: false, default: true, index: true
       t.datetime :discarded_at, null: true, index: true
       t.timestamps
@@ -22,6 +23,7 @@ class CreatePolyTables < ActiveRecord::Migration[6.1]
     create_table :comments do |t|
       t.belongs_to :user, null: false, foreign_key: {  on_delete: :cascade }, index: true
       t.references :commentable, polymorphic: true, null: false, index: true
+      t.string :content_hash, null: false
       t.boolean :is_private, null: false, default: false
       t.datetime :discarded_at, null: true, index: true
       t.timestamps

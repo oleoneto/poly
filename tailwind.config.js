@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme")
 
 function withOpacity(variableName) {
   return ({ opacityValue }) => {
@@ -32,8 +33,8 @@ module.exports = {
         primary: withOpacity('--color-bg-primary'),
         secondary: withOpacity('--color-bg-secondary'),
         tertiary: withOpacity('--color-bg-tertiary'),
-        inverted: withOpacity('--color-bg-inverted'),
         muted: withOpacity('--color-bg-muted'),
+        inverted: withOpacity('--color-bg-inverted'),
         'button-accent': withOpacity('--color-button-accent'),
         'button-accent-hover': withOpacity('--color-button-accent-hover'),
         'button-muted': withOpacity('--color-button-muted')
@@ -42,14 +43,13 @@ module.exports = {
         primary: withOpacity('--color-border-primary'),
         secondary: withOpacity('--color-border-secondary'),
         tertiary: withOpacity('--color-border-tertiary'),
-        muted: withOpacity('--color-border-muted')
+        inverted: withOpacity('--color-border-inverted'),
       },
       textColor: {
         primary: withOpacity('--color-text-primary'),
         secondary: withOpacity('--color-text-secondary'),
         tertiary: withOpacity('--color-text-tertiary'),
-        muted: withOpacity('--color-text-muted'),
-        inverted: withOpacity('--color-text-inverted')
+        inverted: withOpacity('--color-text-inverted'),
       },
       lineClamp: {
         10: '10',
@@ -58,20 +58,20 @@ module.exports = {
       typography: theme => ({
         DEFAULT: {
           css: {
-            code: {
-              fontSize: 'inherit'
-            },
-            blockquote: {
-              color: 'inherit'
-            },
-            strong: {
-              color: 'inherit'
-            },
-            'code::before': {
-              content: 'none',
-            },
-            'code::after': {
-              content: 'none',
+            code: { fontSize: 'inherit' },
+            blockquote: { color: 'inherit' },
+            h1: { color: 'inherit' },
+            h2: { color: 'inherit' },
+            h3: { color: 'inherit' },
+            h4: { color: 'inherit' },
+            h5: { color: 'inherit' },
+            h6: { color: 'inherit' },
+            strong: { color: 'inherit' },
+            'code::before': { content: 'none' },
+            'code::after': { content: 'none' },
+            video: {
+              margin: '0 !important',
+              padding: '0'
             },
           }
         }

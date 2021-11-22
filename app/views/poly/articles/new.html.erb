@@ -3,8 +3,9 @@
     <div class="text-lg max-w-prose mx-auto">
       <h1>
         <span class="block text-center text-xs text-blue-600 font-semibold tracking-wide uppercase">
+          <%= link_to t("views.articles"), articles_path, class: "text-indigo-600 underline" %><span> - </span>
           <%= Time.now.to_formatted_s(:long) %> <span> - </span>
-          <%= link_to current_user, current_user, class: "text-indigo-600 underline" %>
+          <%= link_to current_user.name, current_user, class: "text-indigo-600 underline" %>
         </span>
       </h1>
     </div>

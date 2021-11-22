@@ -22,18 +22,28 @@
 
               <%= link_to "All articles", articles_path, class: "text-base font-medium text-secondary" %>
 
-              <% if is_author?(@article.author) %>
+              <% if can? :manage, @article %>
                 <svg class="hidden md:block mx-1 h-5 w-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M11 0h3L9 20H6l5-20z" />
                 </svg>
 
                 <%= link_to "Edit", edit_article_path, class: "text-base text-indigo-600" %>
+
+                <svg class="hidden md:block mx-1 h-5 w-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M11 0h3L9 20H6l5-20z" />
+                </svg>
+
+                <% if @article.kept? %>
+                <%= button_to :delete, @article, method: :delete, class: "p-0.5 rounded text-base bg-red-500 text-inverted" %>
+                <% elsif can? :manage, @article %>
+                <p class="text-base">Discarded <%= relative_time_in_words(@article.discarded_at) %></p>
+                <% end %>
               <% end %>
             </div>
           </div>
         </div>
 
-        <p class="my-4 block text-3xl text-center leading-8 font-extrabold tracking-tight sm:text-5xl capitalize">
+        <p class="my-4 block text-3xl font-serif text-center leading-8 font-extrabold tracking-tight sm:text-5xl capitalize">
           <%= @article.title %>
         </p>
 
@@ -43,7 +53,7 @@
       </h1>
     </div>
 
-    <article class="mt-6 text-primary prose prose-indigo prose-xl mx-auto" data-controller="clipboard color">
+    <article class="mt-6 text-primary prose prose-indigo prose-xl mx-auto" data-controller="clipboard color plyr">
       <%= @article.content %>
     </article>
 

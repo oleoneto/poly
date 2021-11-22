@@ -1,10 +1,13 @@
 require "poly/version"
 require "poly/engine"
-require "discard"
 require "image_processing"
-require 'prefixed_ids'
-require "pagy"
+require "hotwire-rails"
 require 'jbuilder'
+require 'prefixed_ids'
+require 'language_list'
+require "cancancan"
+require "discard"
+require "pagy"
 
 module Poly
   mattr_accessor :trash_ttl

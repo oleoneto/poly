@@ -17,7 +17,15 @@
           </h1>
         </div>
         <div class="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-          <% if current_user != @user %>
+          <% if can? :manage, @user %>
+            <%= link_to settings_path, class: "inline-flex justify-center px-4 py-2 border border-tertiary shadow-sm text-sm font-medium rounded-md text-primary bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" do %>
+              <svg class="-ml-1 mr-2 h-5 w-5 text-secondary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M5 3a1 1 0 000 2c5.523 0 10 4.477 10 10a1 1 0 102 0C17 8.373 11.627 3 5 3z" />
+                <path d="M4 9a1 1 0 011-1 7 7 0 017 7 1 1 0 11-2 0 5 5 0 00-5-5 1 1 0 01-1-1zM3 15a2 2 0 114 0 2 2 0 01-4 0z" />
+              </svg>
+              <span>Settings</span>
+            <% end %>
+          <% else %>
             <%= link_to "#message", class: "inline-flex justify-center px-4 py-2 border border-tertiary shadow-sm text-sm font-medium rounded-md text-primary bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" do %>
               <svg class="-ml-1 mr-2 h-5 w-5 text-secondary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
@@ -32,14 +40,6 @@
                 <path d="M4 9a1 1 0 011-1 7 7 0 017 7 1 1 0 11-2 0 5 5 0 00-5-5 1 1 0 01-1-1zM3 15a2 2 0 114 0 2 2 0 01-4 0z" />
               </svg>
               <span>Follow</span>
-            <% end %>
-          <% else %>
-            <%= link_to settings_path, class: "inline-flex justify-center px-4 py-2 border border-tertiary shadow-sm text-sm font-medium rounded-md text-primary bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" do %>
-              <svg class="-ml-1 mr-2 h-5 w-5 text-secondary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path d="M5 3a1 1 0 000 2c5.523 0 10 4.477 10 10a1 1 0 102 0C17 8.373 11.627 3 5 3z" />
-                <path d="M4 9a1 1 0 011-1 7 7 0 017 7 1 1 0 11-2 0 5 5 0 00-5-5 1 1 0 01-1-1zM3 15a2 2 0 114 0 2 2 0 01-4 0z" />
-              </svg>
-              <span>Settings</span>
             <% end %>
           <% end %>
         </div>
@@ -65,9 +65,9 @@
         <div id="articles" class="py-8">
           <div class="flex justify-between">
           <p class="font-semibold text-2xl">Articles (<%= @article_pagination.count %>)</p>
-          <%= link_to "All Articles", articles_path, class: "text-indigo-600 underline items-center" %>
+          <%= link_to "All Articles", articles_path, class: "text-indigo-600 dark:text-indigo-500 underline items-center" %>
           </div>
-          <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 my-4">
+          <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 my-4">
             <%= render @articles %>
           </div>
           <%== pagy_nav(@article_pagination) if @article_pagination.pages > 1 %>

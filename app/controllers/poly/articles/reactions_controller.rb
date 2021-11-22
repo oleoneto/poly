@@ -1,6 +1,6 @@
 module Poly
   class Articles::ReactionsController < Poly::ReactionsController
-    before_action :set_reactable, only: :create
+    before_action :set_reactable, only: [:create, :destroy]
 
     private
 

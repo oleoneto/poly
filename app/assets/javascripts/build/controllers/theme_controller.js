@@ -18,19 +18,19 @@ export default class extends Controller {
         if (!this.shouldEnable) return;
 
         this.theme = localStorage.theme;
-        this['themeTarget'].classList.toggle('dark', this.theme === 'dark');
-        this['toggleTarget'].classList.toggle('translate-x-full', !this.theme || this.theme === 'light');
+        this['themeTarget'].classList = [this.theme];
     }
 
-    toggleTheme() {
-        localStorage.theme = this.theme === 'dark' ? 'light' : 'dark';
-        this.theme = localStorage.theme;
-
-        this['themeTarget'].classList.toggle('dark', this.theme === 'dark');
-        this['toggleTarget'].classList.toggle('translate-x-full', this.theme === 'light');
+    toggleTheme(event) {
+        this.theme = event.target.value;
+        localStorage.theme = this.theme;
+        this['themeTarget'].classList = [this.theme];
     }
 
     loadTheme() {
-        this['themeTarget'].classList.toggle('dark', localStorage.theme === 'dark');
+        this.theme = localStorage.theme;
+        this['themeTarget'].classList = [this.theme];
+
+        if (this['hasToggleTarget']) this['toggleTarget'].value = this.theme;
     }
 }

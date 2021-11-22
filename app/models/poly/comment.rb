@@ -3,13 +3,13 @@
 # Table name: comments
 #
 #  id               :bigint            not null, primary key
-#  commentable_type :string            not null
-#  content          :text              not null
-#  discarded_at     :datetime
+#  content_hash     :text              not null
 #  is_private       :boolean           default(FALSE), not null
+#  discarded_at     :datetime
 #  created_at       :datetime          not null
 #  updated_at       :datetime          not null
 #  commentable_id   :integer           not null
+#  commentable_type :string            not null
 #  user_id          :bigint            not null
 #
 # Indexes
@@ -26,6 +26,7 @@
 module Poly
   class Comment < ApplicationRecord
     include Poly::Concerns::Commentable
+    include Poly::Concerns::ContentHashable
     include Poly::Concerns::Reactable
     include Poly::Concerns::Sortable
     include Poly::Concerns::Trashable

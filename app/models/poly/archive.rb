@@ -27,7 +27,7 @@ module Poly
     include Poly::Concerns::Trashable
     include Poly::Concerns::UserOwned
 
-    has_prefix_id :arc
+    has_prefix_id :arch
 
     belongs_to :archivable, polymorphic: true
 

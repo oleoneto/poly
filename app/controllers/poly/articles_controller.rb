@@ -2,14 +2,16 @@ require_dependency "poly/application_controller"
 
 module Poly
   class ArticlesController < ApplicationController
+    load_and_authorize_resource
+
     before_action :set_article, except: [:index, :create, :new]
     include Pagy::Backend
 
     def index
       if params[:tag]
-        @paginator, @articles = pagy(Poly::Article.tagged_with(params[:tag]), items: 8)
+        @paginator, @articles = pagy(Poly::Article.tagged_with(params[:tag]).accessible_by(current_ability).latest, items: 8)
       else
-        @paginator, @articles = pagy(Poly::Article.kept.published.latest, items: 8)
+        @paginator, @articles = pagy(Poly::Article.kept.accessible_by(current_ability).latest, items: 8)
       end
       respond_to do |format|
         format.html
@@ -44,6 +46,11 @@ module Poly
       end
     end
 
+    def destroy
+      @article.discard!
+      redirect_to articles_path
+    end
+
     private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -54,7 +61,7 @@ module Poly
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:author_id, :title, :content, :excerpt, :status, :is_private, :tag_list)
+      params.require(:article).permit(:title, :content, :excerpt, :status, :is_private, :language, :tag_list)
     end
   end
 end

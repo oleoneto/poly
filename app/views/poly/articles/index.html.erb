@@ -1,3 +1,5 @@
+<%= turbo_stream_from "articles" %>
+
 <main class="mx-auto px-5 md:px-10 lg:px-20">
   <div class="pt-10 pb-12 px-4 sm:px-6 lg:pt-24 lg:pb-10 lg:px-8">
     <div class="relative max-w-7xl mx-auto lg:max-w-7xl">
@@ -12,15 +14,16 @@
         </div>
       </div>
 
-      <div class="py-2">
+      <div class="py-2 flex justify-between">
         <%= render 'poly/tags/cloud', collection: Poly::Article.kept.visible.published %>
-      </div>
-
-      <div class="py-4 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <% @articles.latest.each do |article| %>
-          <%= render article %>
+        <% if can? :create, Poly::Article %>
+        <%= link_to "New Article", new_article_path, class: "py-0.5 px-2 h-8 text-primary border-b hover:border-b-4 border-primary text-sm font-bold transition duration-200" %>
         <% end %>
       </div>
+
+      <%= turbo_frame_tag("articles", class: "py-4 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3") do %>
+        <%= render @articles %>
+      <% end %>
 
       <%== pagy_nav(@paginator) if @paginator.pages > 1 %>
     </div>

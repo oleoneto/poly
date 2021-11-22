@@ -1,6 +1,6 @@
 module Poly
   class Articles::CommentsController < Poly::CommentsController
-    before_action :set_commentable, only: :create
+    before_action :set_commentable, only: [:create, :destroy]
 
     private
 

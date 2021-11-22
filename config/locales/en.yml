@@ -17,3 +17,8 @@ en:
   views:
     errors:
       offline: "Your browser appears to be offline."
+    visibility:
+      private: "This content is private"
+    articles: "articles"
+  words:
+    you: "you"

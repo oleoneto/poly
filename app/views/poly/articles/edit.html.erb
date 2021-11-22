@@ -3,6 +3,7 @@
     <div class="text-lg max-w-prose mx-auto">
       <h1>
         <span class="block text-center text-xs text-blue-600 font-semibold tracking-wide uppercase">
+          <%= link_to t("views.articles"), articles_path, class: "text-indigo-600 underline" %><span> - </span>
           <%= @article.created_at.to_formatted_s(:long) %> <span> - </span>
           <%= link_to @article.author.name, @article.author, class: "text-indigo-600 underline" %>
           (<%= relative_time_in_words(@article.created_at) %>)

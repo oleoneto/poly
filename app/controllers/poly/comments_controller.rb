@@ -15,7 +15,7 @@ module Poly
       @comment.destroy if @comment
 
       respond_to do |format|
-        format.html { redirect_back(fallback_location: root_path) }
+        format.html { redirect_back(fallback_location: @commentable) }
         format.json { head :no_content }
       end
     end

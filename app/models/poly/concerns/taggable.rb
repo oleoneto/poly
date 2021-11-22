@@ -18,6 +18,7 @@ module Poly
                    .where("taggings.taggable_type = ?", name)
                    .where("#{self.table_name}.id IN (?)", ids)
                    .group("taggings.tag_id", "tags.id")
+                   .order("tags.name")
         end
 
         def tag_list

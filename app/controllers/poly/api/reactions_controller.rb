@@ -1,5 +1,5 @@
 module Poly
-  module V1
+  module Api
     class ReactionsController < Poly::ApiController
       # Fetch reactions for `current_user` if no `@reactable` is specified
       before_action -> { @reactable = current_user unless @reactable }

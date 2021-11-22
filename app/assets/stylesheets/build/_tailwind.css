@@ -14,4 +14,6 @@
 @import "./components/_forms.scss";
 @import "./components/_colors.scss";
 @import "./components/_tags.scss";
+
+@import "./components/plyr.css";
 /*! purgecss end ignore */

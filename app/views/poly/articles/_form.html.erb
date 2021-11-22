@@ -30,16 +30,25 @@
     <span class="absolute text-sm border bg-secondary border-tertiary rounded px-2 right-2 bottom-5" data-text-counter-target="output"></span>
   </div>
 
-  <div class="my-8 relative" data-controller="text-counter" data-text-counter-word-mode-value="true" >
-    <%= form.rich_text_area :content, class: "input-base bg-primary border-tertiary", data: {controller: "autocomplete", autocomplete_url_value: user_completion_path, autocomplete_trigger_value: "@", text_counter_target: "source" } %>
+  <div class="my-8 relative" data-controller="text-counter plyr" data-text-counter-word-mode-value="true" >
+    <%= form.rich_text_area :content, class: "input-base bg-primary border-tertiary", data: {controller: "autocomplete", autocomplete_url_value: user_completion_path, autocomplete_trigger_value: "@", text_counter_target: "source", plyr_target: 'editor' } %>
     <span class="absolute text-sm border border-tertiary bg-primary rounded px-2 right-2 bottom-2" data-text-counter-target="output"></span>
+  </div>
+
+  <div class="-mx-3 my-2">
+    <div class="md:w-full px-3">
+      <%= form.label :language, class: "block uppercase tracking-wide text-xs font-bold mb-2" %>
+      <div class="relative">
+        <%= form.select :language, options_for_select(Poly::Article.languages), { :class => "block appearance-none w-full bg-secondary border border-tertiary py-3 px-4 pr-8 rounded" } %>
+      </div>
+    </div>
   </div>
 
   <div class="-mx-3 my-2">
     <div class="md:w-full px-3">
       <%= form.label :status, class: "block uppercase tracking-wide text-xs font-bold mb-2" %>
       <div class="relative">
-        <%= form.select(:status, [options_for_enum(article, :status)], {}, { :class => "block appearance-none w-full bg-secondary border border-tertiary py-3 px-4 pr-8 rounded" }) %>
+        <%= form.select :status, [options_for_enum(article, :status)], {required: true}, { :class => "block appearance-none w-full bg-secondary border border-tertiary py-3 px-4 pr-8 rounded" } %>
       </div>
     </div>
   </div>
@@ -60,3 +69,5 @@
     </div>
   </div>
 <% end %>
+
+<%= link_to :delete, article_url, method: :delete, class: "p-2 mb-6 bg-red-600 hover:bg-red-800 text-white text-sm font-bold rounded transition duration-200" unless article.new_record? %>

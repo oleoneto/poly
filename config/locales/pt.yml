@@ -17,3 +17,8 @@ pt:
   views:
     errors:
       offline: "O seu navegador não está conectado à internet."
+    visibility:
+      private: "Esse conteúdo é público"
+    articles: "artigos"
+  words:
+    you: "voçê"

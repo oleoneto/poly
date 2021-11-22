@@ -1,9 +1,8 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.video? %>
-    <%= video_tag main_app.polymorphic_url(blob.attachable), controls: true, autoplay: false, class: "rounded py-1" %>
+    <%= video_tag main_app.polymorphic_url(blob.attachable), controls: true, autoplay: false, class: "" %>
   <% elsif blob.audio? %>
-    <audio src="">Audio</audio>
-    <%= audio_tag(main_app.polymorphic_url(blob), controls: true, data: { title: blob.filename }, class: "w-full") %>
+    <%= audio_tag(main_app.polymorphic_url(blob), controls: true, data: { title: blob.filename }, class: "") %>
   <% elsif blob.representable? %>
     <%= image_tag main_app.url_for(blob) %>
   <% end %>

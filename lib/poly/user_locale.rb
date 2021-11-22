@@ -1,5 +1,9 @@
 module Poly
   module UserLocale
+    def current_user
+      @current_user ||= User.second
+    end
+
     protected
 
     def set_user_locale

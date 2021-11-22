@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2021_11_02_183426) do
     t.string "language"
     t.string "excerpt", limit: 144, default: "", null: false
     t.integer "status", null: false
+    t.string "content_hash", null: false
     t.boolean "is_private", default: true, null: false
     t.datetime "discarded_at"
     t.datetime "created_at", precision: 6, null: false
@@ -96,6 +97,7 @@ ActiveRecord::Schema.define(version: 2021_11_02_183426) do
     t.bigint "user_id", null: false
     t.string "commentable_type", null: false
     t.bigint "commentable_id", null: false
+    t.string "content_hash", null: false
     t.boolean "is_private", default: false, null: false
     t.datetime "discarded_at"
     t.datetime "created_at", precision: 6, null: false
@@ -183,8 +185,10 @@ ActiveRecord::Schema.define(version: 2021_11_02_183426) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
+    t.boolean "is_admin", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["is_admin"], name: "index_users_on_is_admin"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

@@ -1,4 +1,4 @@
-<div class="py-2 mb-2 flex flex-col space-y-4 px-1.5 rounded">
+<div class="py-2 mb-2 flex flex-col space-y-4 rounded">
   <div class="flex flex-row items-center space-x-2 justify-between">
     <p class="text-xs text-secondary">
       <% if defined? user %>
@@ -6,8 +6,12 @@
           <span class="font-semibold text-blue-600"><%= user.name %></span>
         <% end %>
       <% else %>
-        <%= link_to comment.commentable do %>
-          <span class="font-semibold text-blue-600"><%= comment.commentable.title %></span>
+        <% if can? :read, comment.commentable %>
+          <%= link_to comment.commentable do %>
+            <span class="font-semibold text-blue-600 capitalize"><%= comment.commentable.title %></span>
+          <% end %>
+        <% else %>
+          <span class="font-semibold"><%= comment.commentable.title %></span>
         <% end %>
       <% end %>
 
@@ -21,8 +25,8 @@
       <%=  link_to 'Reply', '', class: "text-blue-600 font-semibold"  %>
       <%  end %>
 
-      <% if is_author?(comment.user) %>
-        <%= link_to comment_url(comment), method: :delete, data: {confirm: 'Are you sure?'}, class: "button-red" do %>
+      <% if can? :manage, comment %>
+        <%= button_to url_for([comment.commentable, comment]), method: :delete, class: "button-red" do %>
           <svg class="w-4 h-4 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
           </svg>
@@ -32,11 +36,13 @@
   </div>
 
   <div class="flex flex-row align-center space-x-1.5">
-    <%= link_to user_url(comment.user), class: "rounded-full flex flex-shrink-0 p-0" do %>
-      <%= image_tag user_avatar(comment.user), class: "w-8 h-8 rounded-full object-fit", alt: comment.user.name %>
+    <% if defined? user %>
+      <%=  link_to user_url(comment.user), class: "rounded-full flex flex-shrink-0 p-0" do  %>
+        <%= image_tag user_avatar(comment.user), class: "w-8 h-8 rounded-full object-fit", alt: comment.user.name %>
+      <%  end  %>
     <% end %>
 
-    <article class="pl-1 text-primary">
+    <article class="text-primary">
       <%= comment.content %>
     </article>
   </div>

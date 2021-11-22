@@ -26,7 +26,7 @@
 module Poly
   class Follow < ApplicationRecord
 
-    broadcasts_to -> (follow) { "follows" }
+    # broadcasts_to -> (follow) { "follows" }
 
     include Poly::Concerns::Sortable
     include Poly::Concerns::Trashable
