@@ -27,21 +27,6 @@ This step will copy all the migrations.
 $ rails g poly:install
 ```
 
-Add the routes to your application
-```ruby
-Rails.application.routes.draw do
-    mount Poly::Engine => "/poly"
-end
-```
-
-Create a `Procfile`:
-```
-web: bin/rails server -p 5003
-css: yarn compile:css --watch --minify
-js: yarn compile:js --watch
-sidekiq: bundle exec sidekiq -r ./sandbox/config/environment.rb
-```
-
 ## Contributing
 Contribution directions go here.
 
